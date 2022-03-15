@@ -7,6 +7,8 @@ export (int) var slide_speed = 400
 
 var vel = Vector2.ZERO
 
+var state_machine
+
 export (float) var friction = 10
 export (float) var acceleration = 25
 
@@ -29,6 +31,7 @@ onready var ap = $AnimationPlayer
 
 func _ready():
 	ap.play("Idle")
+	state_machine = $AnimationTree.get("Parameters/playback")
 	pass # Replace with function body.
 
 func update_animation(anim):
@@ -67,6 +70,8 @@ func get_input():
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
+	if Input.is_action_pressed("attack"):
+		pass
 
 func _process(delta):
 	get_input()
@@ -89,3 +94,8 @@ func _process(delta):
 	
 	vel.y += gravity*delta
 	vel = move_and_slide(vel, Vector2.UP)
+
+
+func _on_HitArea_area_entered(area):
+	if area.is_in_group("Enemies"):
+		area.take_damage()

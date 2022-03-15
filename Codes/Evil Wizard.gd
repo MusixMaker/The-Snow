@@ -26,3 +26,5 @@ func _physics_process(_delta):
 	else:
 		$AnimationPlayer.play("Idle")
 		
+func take_damage():
+	print("Ouch")

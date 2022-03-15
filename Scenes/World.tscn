@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Models/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Fireworm.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node2D"]
 
@@ -22,3 +23,6 @@ drag_margin_top = 0.5
 drag_margin_right = 0.5
 drag_margin_bottom = 0.5
 editor_draw_drag_margin = true
+
+[node name="Fireworm" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 269 )
