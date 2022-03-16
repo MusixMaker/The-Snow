@@ -82,12 +82,9 @@ func _process(delta):
 	
 	if not is_on_floor():
 		if vel.y < 0:
-			state = JUMP
+			pass
 		if vel.y > 0:
-			state = FALL
-			
-	handle_state(state)
-	update_animation(state)
+			pass
 	
 	vel.y += gravity*delta
 	vel = move_and_slide(vel, Vector2.UP)

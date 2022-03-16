@@ -1,110 +1,110 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=95 format=2]
 
-[ext_resource path="res://Models/Martial Hero/Take Hit - white silhouette.png" type="Texture" id=1]
-[ext_resource path="res://Models/Martial Hero/Jump.png" type="Texture" id=2]
-[ext_resource path="res://Models/Martial Hero/Take Hit.png" type="Texture" id=3]
-[ext_resource path="res://Models/Martial Hero/Fall.png" type="Texture" id=4]
-[ext_resource path="res://Models/Martial Hero/Run.png" type="Texture" id=5]
+[ext_resource path="res://Codes/PlayerNewState.gd" type="Script" id=1]
+[ext_resource path="res://Models/Martial Hero/Take Hit.png" type="Texture" id=2]
+[ext_resource path="res://Models/Martial Hero/Run.png" type="Texture" id=3]
+[ext_resource path="res://Models/Martial Hero/Attack1.png" type="Texture" id=4]
+[ext_resource path="res://Models/Martial Hero/Idle.png" type="Texture" id=5]
 [ext_resource path="res://Models/Martial Hero/Attack2.png" type="Texture" id=6]
 [ext_resource path="res://Models/Martial Hero/Death.png" type="Texture" id=7]
-[ext_resource path="res://Models/Martial Hero/Attack1.png" type="Texture" id=8]
-[ext_resource path="res://Models/Martial Hero/Idle.png" type="Texture" id=9]
-[ext_resource path="res://Codes/Player.gd" type="Script" id=10]
+[ext_resource path="res://Models/Martial Hero/Take Hit - white silhouette.png" type="Texture" id=8]
+[ext_resource path="res://Models/Martial Hero/Jump.png" type="Texture" id=9]
+[ext_resource path="res://Models/Martial Hero/Fall.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 8 )
 region = Rect2( 600, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 600, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 800, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 8 )
+atlas = ExtResource( 4 )
 region = Rect2( 1000, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 600, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 800, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 1000, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 1200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 5 )
 region = Rect2( 1400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 9 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 600, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=29]
@@ -132,43 +132,43 @@ atlas = ExtResource( 6 )
 region = Rect2( 1000, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=37]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=38]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 600, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 800, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 1000, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 1200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 1400, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 10 )
 region = Rect2( 0, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 10 )
 region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=9]
@@ -546,14 +546,8 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=48]
 extents = Vector2( 13, 26 )
 
-[sub_resource type="AnimationNodeAnimation" id=86]
-animation = "Attack 1"
-
 [sub_resource type="AnimationNodeAnimation" id=61]
 animation = "Attack 1"
-
-[sub_resource type="AnimationNodeAnimation" id=87]
-animation = "Attack 2"
 
 [sub_resource type="AnimationNodeAnimation" id=62]
 animation = "Attack 2"
@@ -565,97 +559,94 @@ animation = "Death"
 animation = "Fall"
 
 [sub_resource type="AnimationNodeAnimation" id=65]
-animation = "Hurt"
-
-[sub_resource type="AnimationNodeAnimation" id=66]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=67]
+[sub_resource type="AnimationNodeAnimation" id=66]
 animation = "Jump"
 
-[sub_resource type="AnimationNodeAnimation" id=68]
+[sub_resource type="AnimationNodeAnimation" id=67]
 animation = "Run"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+advance_condition = "IsMoving"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=69]
+advance_condition = "NotIsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
+advance_condition = "IsAttacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=71]
+advance_condition = "IsAttacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=72]
+switch_mode = 2
+advance_condition = "IsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=73]
+switch_mode = 2
+advance_condition = "NotIsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=74]
+advance_condition = "IsAttacking2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=75]
+advance_condition = "IsAttacking2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=76]
+switch_mode = 2
+advance_condition = "IsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=77]
+switch_mode = 2
+advance_condition = "NotIsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=78]
-switch_mode = 2
-auto_advance = true
+advance_condition = "IsJumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=79]
+advance_condition = "IsJumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=80]
-switch_mode = 2
-auto_advance = true
+advance_condition = "NotIsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=81]
+advance_condition = "IsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=82]
-switch_mode = 2
-auto_advance = true
+advance_condition = "NotIsJumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=83]
+advance_condition = "IsDead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=84]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=85]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=88]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=89]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=90]
-switch_mode = 2
-auto_advance = true
+advance_condition = "IsDead"
 
 [sub_resource type="AnimationNodeStateMachine" id=59]
 "states/Attack 1/node" = SubResource( 61 )
-"states/Attack 1/position" = Vector2( 64, 0 )
-"states/Attack 1 2/node" = SubResource( 86 )
-"states/Attack 1 2/position" = Vector2( -92, 155 )
+"states/Attack 1/position" = Vector2( 254.396, 171.524 )
 "states/Attack 2/node" = SubResource( 62 )
-"states/Attack 2/position" = Vector2( -92, 79 )
-"states/Attack 2 2/node" = SubResource( 87 )
-"states/Attack 2 2/position" = Vector2( -92, 259.625 )
+"states/Attack 2/position" = Vector2( 254.396, 324.586 )
 states/Death/node = SubResource( 63 )
-states/Death/position = Vector2( 245, 274 )
+states/Death/position = Vector2( 254.396, 39.1546 )
 states/Fall/node = SubResource( 64 )
-states/Fall/position = Vector2( 451, 283 )
-states/Hurt/node = SubResource( 65 )
-states/Hurt/position = Vector2( 109, 274 )
-states/Idle/node = SubResource( 66 )
-states/Idle/position = Vector2( 197, 155 )
-states/Jump/node = SubResource( 67 )
-states/Jump/position = Vector2( 451, 155 )
-states/Run/node = SubResource( 68 )
-states/Run/position = Vector2( 451, 0 )
-transitions = [ "Idle", "Run", SubResource( 69 ), "Run", "Idle", SubResource( 70 ), "Idle", "Jump", SubResource( 71 ), "Run", "Jump", SubResource( 72 ), "Jump", "Idle", SubResource( 73 ), "Jump", "Fall", SubResource( 74 ), "Fall", "Idle", SubResource( 75 ), "Idle", "Fall", SubResource( 76 ), "Idle", "Attack 1", SubResource( 77 ), "Attack 1", "Idle", SubResource( 78 ), "Idle", "Attack 2", SubResource( 79 ), "Attack 2", "Idle", SubResource( 80 ), "Idle", "Hurt", SubResource( 81 ), "Hurt", "Idle", SubResource( 82 ), "Idle", "Death", SubResource( 83 ), "Run", "Attack 1", SubResource( 84 ), "Run", "Attack 2", SubResource( 85 ), "Idle", "Attack 1 2", SubResource( 88 ), "Attack 1 2", "Attack 2 2", SubResource( 89 ), "Attack 2 2", "Idle", SubResource( 90 ) ]
+states/Fall/position = Vector2( 254.396, -74.8454 )
+states/Idle/node = SubResource( 65 )
+states/Idle/position = Vector2( 62.396, 110.524 )
+states/Jump/node = SubResource( 66 )
+states/Jump/position = Vector2( 254.396, -195.738 )
+states/Run/node = SubResource( 67 )
+states/Run/position = Vector2( 447.396, 110.524 )
+transitions = [ "Idle", "Run", SubResource( 68 ), "Run", "Idle", SubResource( 69 ), "Idle", "Attack 1", SubResource( 70 ), "Run", "Attack 1", SubResource( 71 ), "Attack 1", "Run", SubResource( 72 ), "Attack 1", "Idle", SubResource( 73 ), "Idle", "Attack 2", SubResource( 74 ), "Run", "Attack 2", SubResource( 75 ), "Attack 2", "Run", SubResource( 76 ), "Attack 2", "Idle", SubResource( 77 ), "Idle", "Jump", SubResource( 78 ), "Run", "Jump", SubResource( 79 ), "Fall", "Idle", SubResource( 80 ), "Fall", "Run", SubResource( 81 ), "Jump", "Fall", SubResource( 82 ), "Idle", "Death", SubResource( 83 ), "Run", "Death", SubResource( 84 ) ]
+start_node = "Idle"
 end_node = "Death"
-graph_offset = Vector2( -525.604, -53.4761 )
+graph_offset = Vector2( -525.604, -136.845 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=60]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 100, 100 )
-script = ExtResource( 10 )
+script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 47 )
@@ -689,5 +680,12 @@ tree_root = SubResource( 59 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 60 )
+parameters/conditions/IsAttacking = false
+parameters/conditions/IsAttacking2 = false
+parameters/conditions/IsDead = false
+parameters/conditions/IsJumping = false
+parameters/conditions/IsMoving = false
+parameters/conditions/NotIsJumping = false
+parameters/conditions/NotIsMoving = false
 
 [connection signal="area_entered" from="AnimatedSprite/HitArea" to="." method="_on_HitArea_area_entered"]

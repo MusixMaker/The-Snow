@@ -1,30 +1,35 @@
 extends KinematicBody2D
 
-onready var sprite = $AnimatedSprite
+var state_machine
+var run_speed = 80
+var vel = Vector2.ZERO
 
-enum{
-	IDLE,
-	MOVE,
-	ATTACK,
-	HURT,
-	DIE
-}
 
 func _ready():
-	pass
-		
-func _physics_process(_delta):
-	
-	if Input.is_action_pressed("attack"):
-		$AnimationPlayer.play("Attack")
-	elif Input.is_action_pressed("ui_left"):
-		get_node("AnimatedSprite").set_flip_h(true)
-		$AnimationPlayer.play("Move")
-	elif Input.is_action_pressed("ui_right"):
-		get_node("AnimatedSprite").set_flip_h(false)
-		$AnimationPlayer.play("Move")
-	else:
-		$AnimationPlayer.play("Idle")
-		
-func take_damage():
-	print("Ouch")
+	state_machine = $AnimationTree.get("parameters/playback")
+
+func update_animation(anim):
+	if vel.x < 0:
+		$AnimatedSprite.flip_h = true
+	if vel.x > 0:
+		$AnimatedSprite.flip_h = false
+
+func get_input():
+	var current = state_machine.get_current_node()
+	vel = Vector2.ZERO
+	if Input.is_action_just_pressed("attack"):
+		state_machine.travel("Attack")
+		return
+	if Input.is_action_pressed("ui_right"):
+		vel.x += 1
+	if Input.is_action_pressed("ui_left"):
+		vel.x -= 1
+	vel = vel.normalized() * run_speed
+	if vel.length() == 0:
+		state_machine.travel("Idle")
+	if vel.length() < 0:
+		state_machine.travel("Run")
+
+func _physics_process(delta):
+	get_input()
+	vel = move_and_slide(vel)
