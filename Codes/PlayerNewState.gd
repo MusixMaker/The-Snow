@@ -24,7 +24,7 @@ func _physics_process(delta):
 	var current_state = playback.get_current_node()
 	
 	if current_state != "Dead":
-		vel += delta * gravity
+		vel = delta * gravity
 		vel = move_and_slide(vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
 		var on_floor = is_on_floor()
 		
