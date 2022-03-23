@@ -6,6 +6,8 @@ export (int) var gravity = 500
 export (int) var slide_speed = 400
 
 var vel = Vector2.ZERO
+var is_attacking
+var dir
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 
@@ -26,6 +28,7 @@ export (float) var acceleration = 25
 
 onready var state
 onready var ap = $AnimationPlayer
+onready var player = get_node("AnimationPlayer")
 
 func _ready():
 	state_machine.start("Idle")
@@ -61,20 +64,24 @@ func update_animation(anim):
 #	pass
 
 func get_input():
-	var dir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if dir != 0:
+	dir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	if dir != 0 and is_attacking == false:
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
 	if Input.is_action_just_pressed("attack"):
 		print('ATAAAAACCCK!!!!!')
-		
+		is_attacking = true
+		print(is_attacking)
 		state_machine.travel("Attack 1")
+		yield(ap,"animation_finished")
+		is_attacking = false
+		print(is_attacking)
 
 func _process(delta):
 	is_attacking = false
 	get_input()
-	print(is_on_floor())
+	#print(is_on_floor())
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
 	if Input.get_action_strength("ui_up") and is_on_floor():
@@ -95,7 +102,7 @@ func _process(delta):
 	vel.y += gravity*delta
 	vel = move_and_slide(vel, Vector2.UP)
 	
-	$AniamtionTree["parameters/conditions/IsAttacking"] = is_attacking
+	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
 
 
 func _on_HitArea_area_entered(area):
