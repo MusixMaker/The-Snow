@@ -4,9 +4,9 @@ export (int) var speed = 200
 export (int) var jump_speed = -250
 export (int) var gravity = 500
 export (int) var slide_speed = 400
+export var is_attacking = false
 
 var vel = Vector2.ZERO
-export var is_attacking = false
 var dir
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
@@ -34,11 +34,7 @@ func _ready():
 	state_machine.start("Idle")
 	pass # Replace with function body.
 
-func update_animation(anim):
-	if vel.x < 0:
-		$AnimatedSprite.flip_h = true
-	if vel.x > 0:
-		$AnimatedSprite.flip_h = false
+
 	#match(anim):
 		#FALL:
 		#	ap.play("Fall")
@@ -72,11 +68,13 @@ func get_input():
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		is_attacking = true
 		state_machine.travel("Attack 1")
-		print(is_attacking)
+
+			
 
 func _process(delta):
+	if state_machine.get_current_node() != "Fall":
+		print(state_machine.get_current_node())
 	get_input()
-	#print(is_on_floor())
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
 	if Input.get_action_strength("ui_up") and is_on_floor():
@@ -92,9 +90,11 @@ func _process(delta):
 			state_machine.travel("Fall")
 			
 	#handle_state(state)
-	update_animation(state)
+	if vel.x < 0:
+		$AnimatedSprite.flip_h = true
+	if vel.x > 0:
+		$AnimatedSprite.flip_h = false
 	
-	print(is_attacking)
 	vel.y += gravity*delta
 	if is_attacking == true:
 		vel.x = 0
