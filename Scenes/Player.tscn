@@ -11,22 +11,6 @@
 [ext_resource path="res://Models/Martial Hero/Idle.png" type="Texture" id=9]
 [ext_resource path="res://Codes/Player.gd" type="Script" id=10]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 200, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 400, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 600, 0, 200, 200 )
-
 [sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 200, 200 )
@@ -147,6 +131,22 @@ region = Rect2( 1200, 0, 200, 200 )
 atlas = ExtResource( 5 )
 region = Rect2( 1400, 0, 200, 200 )
 
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 400, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 600, 0, 200, 200 )
+
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 200, 200 )
@@ -162,14 +162,6 @@ region = Rect2( 400, 0, 200, 200 )
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
 region = Rect2( 600, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 200, 200 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 4 )
-region = Rect2( 200, 0, 200, 200 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
@@ -195,13 +187,16 @@ region = Rect2( 800, 0, 200, 200 )
 atlas = ExtResource( 7 )
 region = Rect2( 1000, 0, 200, 200 )
 
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 4 )
+region = Rect2( 200, 0, 200, 200 )
+
 [sub_resource type="SpriteFrames" id=47]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "Hurt - Silhouette",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "Jump",
@@ -227,19 +222,24 @@ animations = [ {
 "name": "Run",
 "speed": 12.0
 }, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Hurt - Silhouette",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "Hurt",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 43 ), SubResource( 44 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "Death",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 43 ), SubResource( 44 ) ],
+"loop": true,
+"name": "Fall",
 "speed": 5.0
 } ]
 
@@ -281,7 +281,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.9 ),
+"times": PoolRealArray( 0, 0.85 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -744,7 +744,7 @@ states/Run/position = Vector2( 447.396, 110.524 )
 transitions = [ "Idle", "Run", SubResource( 68 ), "Run", "Idle", SubResource( 69 ), "Idle", "Attack 1", SubResource( 70 ), "Run", "Attack 1", SubResource( 71 ), "Attack 1", "Run", SubResource( 72 ), "Attack 1", "Idle", SubResource( 73 ), "Idle", "Attack 2", SubResource( 74 ), "Run", "Attack 2", SubResource( 75 ), "Attack 2", "Run", SubResource( 76 ), "Attack 2", "Idle", SubResource( 77 ), "Idle", "Jump", SubResource( 78 ), "Run", "Jump", SubResource( 79 ), "Fall", "Idle", SubResource( 80 ), "Fall", "Run", SubResource( 81 ), "Jump", "Fall", SubResource( 82 ), "Idle", "Death", SubResource( 83 ), "Run", "Death", SubResource( 84 ), "Idle", "Hurt", SubResource( 88 ), "Run", "Hurt", SubResource( 89 ), "Hurt", "Run", SubResource( 90 ), "Hurt", "Idle", SubResource( 91 ), "Hurt", "Death", SubResource( 92 ) ]
 start_node = "Idle"
 end_node = "Death"
-graph_offset = Vector2( -525.604, 55.9635 )
+graph_offset = Vector2( -525.604, -311.759 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=86]
 

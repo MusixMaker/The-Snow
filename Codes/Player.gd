@@ -5,6 +5,7 @@ export (int) var jump_speed = -250
 export (int) var gravity = 500
 export (int) var slide_speed = 400
 export var is_attacking = false
+export var is_attacking_2 = false
 
 var vel = Vector2.ZERO
 var dir
@@ -68,7 +69,9 @@ func get_input():
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		is_attacking = true
 		state_machine.travel("Attack 1")
-
+	if Input.get_action_strength("ui_up") and is_on_floor():
+		state_machine.travel("Jump")
+		vel.y = jump_speed
 			
 
 func _process(delta):
@@ -77,9 +80,6 @@ func _process(delta):
 	get_input()
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
-	if Input.get_action_strength("ui_up") and is_on_floor():
-		state_machine.travel("Jump")
-		vel.y = jump_speed
 	elif vel.x != 0:
 		state_machine.travel("Run")
 	
@@ -96,11 +96,12 @@ func _process(delta):
 		$AnimatedSprite.flip_h = false
 	
 	vel.y += gravity*delta
-	if is_attacking == true:
-		vel.x = 0
+	#if is_attacking == true:
+	#	vel.x = 0
 	vel = move_and_slide(vel, Vector2.UP)
 	
 	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
+	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
 
 
 func _on_HitArea_area_entered(area):
