@@ -5,6 +5,7 @@
 [ext_resource path="res://Models/Fireworm/Worm/Idle.png" type="Texture" id=3]
 [ext_resource path="res://Models/Fireworm/Worm/Attack.png" type="Texture" id=4]
 [ext_resource path="res://Models/Fireworm/Worm/Death.png" type="Texture" id=5]
+[ext_resource path="res://Codes/Fireworm.gd" type="Script" id=6]
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 3 )
@@ -110,6 +111,18 @@ region = Rect2( 630, 0, 90, 90 )
 atlas = ExtResource( 1 )
 region = Rect2( 720, 0, 90, 90 )
 
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 90, 90 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 90, 0, 90, 90 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 180, 0, 90, 90 )
+
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 90, 90 )
@@ -174,18 +187,6 @@ region = Rect2( 1260, 0, 90, 90 )
 atlas = ExtResource( 4 )
 region = Rect2( 1350, 0, 90, 90 )
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 90, 90 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 90, 0, 90, 90 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 180, 0, 90, 90 )
-
 [sub_resource type="SpriteFrames" id=46]
 animations = [ {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
@@ -203,19 +204,19 @@ animations = [ {
 "name": "Move",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
-"loop": true,
-"name": "Attack",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "Get Hit",
 "speed": 0.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=47]
-extents = Vector2( 24, 16 )
+extents = Vector2( 26, 14.5 )
 
 [sub_resource type="Animation" id=49]
 resource_name = "Attack"
@@ -333,6 +334,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=52]
 resource_name = "Move"
 length = 0.9
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:animation")
 tracks/0/interp = 1
@@ -434,14 +436,10 @@ advance_condition = "IsAttacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=69]
 switch_mode = 2
-advance_condition = "NotIsMoving"
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 advance_condition = "IsAttacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=71]
-switch_mode = 2
-advance_condition = "IsMoving"
 
 [sub_resource type="AnimationNodeStateMachine" id=72]
 states/Attack/node = SubResource( 54 )
@@ -454,20 +452,22 @@ states/Idle/node = SubResource( 57 )
 states/Idle/position = Vector2( 409, 120 )
 states/Move/node = SubResource( 58 )
 states/Move/position = Vector2( 742, 120 )
-transitions = [ "Idle", "Move", SubResource( 59 ), "Move", "Idle", SubResource( 60 ), "Idle", "Death", SubResource( 61 ), "Move", "Death", SubResource( 62 ), "Get Hit", "Death", SubResource( 63 ), "Idle", "Get Hit", SubResource( 64 ), "Get Hit", "Idle", SubResource( 65 ), "Move", "Get Hit", SubResource( 66 ), "Get Hit", "Move", SubResource( 67 ), "Idle", "Attack", SubResource( 68 ), "Attack", "Idle", SubResource( 69 ), "Move", "Attack", SubResource( 70 ), "Attack", "Move", SubResource( 71 ) ]
+transitions = [ "Idle", "Move", SubResource( 59 ), "Move", "Idle", SubResource( 60 ), "Idle", "Death", SubResource( 61 ), "Move", "Death", SubResource( 62 ), "Get Hit", "Death", SubResource( 63 ), "Idle", "Get Hit", SubResource( 64 ), "Get Hit", "Idle", SubResource( 65 ), "Move", "Get Hit", SubResource( 66 ), "Get Hit", "Move", SubResource( 67 ), "Idle", "Attack", SubResource( 68 ), "Attack", "Idle", SubResource( 69 ), "Move", "Attack", SubResource( 70 ) ]
 start_node = "Idle"
 end_node = "Death"
-graph_offset = Vector2( 0, -193.768 )
+graph_offset = Vector2( 0, -95.01 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=73]
 
 [node name="Fireworm" type="KinematicBody2D"]
+script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 46 )
 animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2, -1.5 )
 shape = SubResource( 47 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -489,3 +489,8 @@ parameters/conditions/IsAttacking = false
 parameters/conditions/IsDead = false
 parameters/conditions/IsMoving = false
 parameters/conditions/NotIsMoving = false
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 24, 0 )
+enabled = true
+cast_to = Vector2( 0, 13 )
