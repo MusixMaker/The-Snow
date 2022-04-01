@@ -36,3 +36,7 @@ func _physics_process(delta):
 
 	if is_on_wall():
 		dir = dir * -1
+		$RayCast2D.position.x *= -1
+	if $RayCast2D.is_colliding() == false:
+		dir = dir * -1
+		$RayCast2D.position.x *= -1
