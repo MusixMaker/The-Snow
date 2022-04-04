@@ -8,6 +8,8 @@ enum{
 	MOVE
 }
 
+export var is_dead = false
+
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 
@@ -21,22 +23,30 @@ var dir = 1
 func _ready():
 	pass 
 
-func _physics_process(delta):
-	vel.x = SPEED * dir
-	
-	if dir == 1:
-		$AnimatedSprite.flip_h = false
-	else:
-		$AnimatedSprite.flip_h = true
-	
-	state_machine.travel("Move")
-	vel.y += GRAVITY
-	
-	vel = move_and_slide(vel, FLOOR)
+func dead():
+	is_dead = true
+	vel = Vector2(0,0)
+	state_machine.travel("Death")
 
-	if is_on_wall():
-		dir = dir * -1
-		$RayCast2D.position.x *= -1
-	if $RayCast2D.is_colliding() == false:
-		dir = dir * -1
-		$RayCast2D.position.x *= -1
+func _physics_process(delta):
+	if is_dead == false:
+		vel.x = SPEED * dir
+		
+		if dir == 1:
+			$AnimatedSprite.flip_h = false
+		else:
+			$AnimatedSprite.flip_h = true
+		
+		state_machine.travel("Move")
+		vel.y += GRAVITY
+		
+		vel = move_and_slide(vel, FLOOR)
+
+		if is_on_wall():
+			dir = dir * -1
+			$RayCast2D.position.x *= -1
+		if $RayCast2D.is_colliding() == false:
+			dir = dir * -1
+			$RayCast2D.position.x *= -1
+		
+		$AnimationTree["parameters/conditions/IsDead"] = is_dead
