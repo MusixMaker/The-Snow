@@ -90,11 +90,11 @@ func _process(delta):
 			state_machine.travel("Fall")
 			
 	#handle_state(state)
-	#if vel.x < 0:
-	#	$AnimatedSprite.flip_h = true
+	if vel.x < 0:
+		$AnimatedSprite.flip_h = true
 	#	$AnimatedSprite/HitArea/HitAreaRight.position.x *= 1
-	#if vel.x > 0:
-	#	$AnimatedSprite.flip_h = false
+	if vel.x > 0:
+		$AnimatedSprite.flip_h = false
 	#	$AnimatedSprite/HitArea/HitAreaRight.position.x *= -1
 	
 	vel.y += gravity*delta
