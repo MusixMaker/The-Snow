@@ -1,35 +1,61 @@
 extends KinematicBody2D
 
-var state_machine
-var run_speed = 80
-var vel = Vector2.ZERO
+enum{
+	ATTACK,
+	DEATH,
+	HIT,
+	IDLE,
+	MOVE
+}
 
+export var is_dead = false
+export (int) var hp: int = 2
+
+onready var state_machine = $AnimationTree.get("parameters/playback")
+onready var state
+
+const GRAVITY = 7.75
+const SPEED = 50
+const FLOOR = Vector2(0,-1)
+
+var vel = Vector2()
+var dir = 1
 
 func _ready():
-	state_machine = $AnimationTree.get("parameters/playback")
+	pass 
 
-func update_animation(anim):
-	if vel.x < 0:
-		$AnimatedSprite.flip_h = true
-	if vel.x > 0:
-		$AnimatedSprite.flip_h = false
-
-func get_input():
-	var current = state_machine.get_current_node()
-	vel = Vector2.ZERO
-	if Input.is_action_just_pressed("attack"):
-		state_machine.travel("Attack")
-		return
-	if Input.is_action_pressed("ui_right"):
-		vel.x += 1
-	if Input.is_action_pressed("ui_left"):
-		vel.x -= 1
-	vel = vel.normalized() * run_speed
-	if vel.length() == 0:
-		state_machine.travel("Idle")
-	if vel.length() < 0:
-		state_machine.travel("Run")
+func dead():
+	is_dead = true
+	vel = Vector2(0,0)
+	state_machine.travel("Death")
 
 func _physics_process(delta):
-	get_input()
-	vel = move_and_slide(vel)
+	print(hp)
+	if is_dead == false:
+		vel.x = SPEED * dir
+		
+		if dir == 1:
+			$AnimatedSprite.flip_h = false
+		else:
+			$AnimatedSprite.flip_h = true
+		
+		state_machine.travel("Move")
+		vel.y += GRAVITY
+		
+		vel = move_and_slide(vel, FLOOR)
+
+		if is_on_wall():
+			dir = dir * -1
+			$RayCast2D.position.x *= -1
+		if $RayCast2D.is_colliding() == false:
+			dir = dir * -1
+			$RayCast2D.position.x *= -1
+		
+		$AnimationTree["parameters/conditions/IsDead"] = is_dead
+
+func take_damage(dam: int, dir: Vector2) -> void:
+	hp -= dam
+	if hp >= 0:
+		state_machine.travel("Hurt")
+	else:
+		state_machine.travel("Dead")

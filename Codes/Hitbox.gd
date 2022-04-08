@@ -1,11 +1,15 @@
 extends Area2D
+class_name Hitbox
 
+export (int) var damage: int = 1
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var collision_shape: CollisionShape2d = get_child(0)
 
+func _init() -> void:
+	connect("body_entered", self, "_on_body_enetered")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _ready() -> void:
+	assert(collision_shape != null)
+	
+func _on_body_entered(body: PhysicsBody2D) -> void:
+	body.take_damage(damage)

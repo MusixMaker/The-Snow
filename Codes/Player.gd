@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export (int) var hp: int = 2
 export (int) var speed = 200
 export (int) var jump_speed = -250
 export (int) var gravity = 500
@@ -10,7 +11,7 @@ export var is_attacking_2 = false
 var vel = Vector2.ZERO
 var dir
 
-onready var state_machine = $AnimationTree.get("parameters/playback")
+
 
 export (float) var friction = 10
 export (float) var acceleration = 25
@@ -27,6 +28,8 @@ export (float) var acceleration = 25
 #	DIE
 #}
 
+onready var sword_hitbox: Area2D = get_node("AnimatedSprite/Hitbox")
+onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var ap = $AnimationPlayer
 onready var player = get_node("AnimationPlayer")
@@ -75,8 +78,6 @@ func get_input():
 			
 
 func _process(delta):
-	if state_machine.get_current_node() != "Fall":
-		print(state_machine.get_current_node())
 	get_input()
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
@@ -107,3 +108,10 @@ func _process(delta):
 func _on_HitArea_area_entered(area):
 	if area.is_in_group("Enemies"):
 		area.take_damage()
+		
+func take_damage(dam: int, dir: Vector2) -> void:
+	hp -= dam
+	if hp >= 0:
+		state_machine.travel("Hurt")
+	else:
+		state_machine.travel("Dead")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Models/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Fireworm.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Fireball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Evil Wizard.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D"]
 
@@ -16,6 +17,7 @@ tile_data = PoolIntArray( -983080, 6, 0, -983079, -1610612730, 0, -983078, -1610
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 264 )
+is_attacking = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -30,3 +32,8 @@ position = Vector2( 456, 274 )
 
 [node name="Fireball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 528, 272 )
+
+[node name="Evil Wizard" parent="." instance=ExtResource( 5 )]
+position = Vector2( 314, 254 )
+collision_layer = 1
+collision_mask = 1

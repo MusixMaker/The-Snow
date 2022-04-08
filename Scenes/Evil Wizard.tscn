@@ -369,6 +369,7 @@ animation = "Move"
 [sub_resource type="AnimationNodeStateMachineTransition" id=85]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=86]
+advance_condition = "IsDead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=87]
 
@@ -396,14 +397,16 @@ states/Move/position = Vector2( 803, 139 )
 transitions = [ "Idle", "Attack", SubResource( 84 ), "Idle", "Move", SubResource( 85 ), "Idle", "Death", SubResource( 86 ), "Idle", "Hurt", SubResource( 87 ), "Attack", "Idle", SubResource( 88 ), "Move", "Idle", SubResource( 89 ), "Hurt", "Idle", SubResource( 90 ) ]
 start_node = "Idle"
 end_node = "Death"
+graph_offset = Vector2( 0, 84.5 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=83]
 
-[node name="Evil Wizard" type="KinematicBody2D"]
-position = Vector2( 548, 291 )
+[node name="Evil Wizard" type="KinematicBody2D" groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 6 )
 
-[node name="Hitbox" type="CollisionShape2D" parent="." groups=["Enemies"]]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, 0.5 )
 shape = SubResource( 35 )
 
@@ -429,3 +432,9 @@ tree_root = SubResource( 82 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 83 )
+parameters/conditions/IsDead = false
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 16, 24 )
+enabled = true
+cast_to = Vector2( 0, 3 )
