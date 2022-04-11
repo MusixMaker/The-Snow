@@ -28,7 +28,7 @@ drag_margin_bottom = 0.5
 editor_draw_drag_margin = true
 
 [node name="Fireworm" parent="." instance=ExtResource( 3 )]
-position = Vector2( 456, 274 )
+position = Vector2( 619, 269 )
 
 [node name="Fireball" parent="." instance=ExtResource( 4 )]
 position = Vector2( 528, 272 )

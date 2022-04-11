@@ -110,6 +110,7 @@ func _on_HitArea_area_entered(area):
 		area.take_damage()
 		
 func take_damage(dam: int, dir: Vector2) -> void:
+	print("hurt")
 	hp -= dam
 	if hp >= 0:
 		state_machine.travel("Hurt")
