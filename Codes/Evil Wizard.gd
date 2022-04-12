@@ -28,9 +28,11 @@ func dead():
 	is_dead = true
 	vel = Vector2(0,0)
 	state_machine.travel("Death")
+	print('RRRAAAARGH')
+	
 
 func _physics_process(delta):
-	print(hp)
+	#print(hp)
 	if is_dead == false:
 		vel.x = SPEED * dir
 		
@@ -53,7 +55,8 @@ func _physics_process(delta):
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 
-func take_damage(dam: int, dir: Vector2) -> void:
+func take_damage(dam: int) -> void:
+	print("you will try")
 	hp -= dam
 	if hp >= 0:
 		state_machine.travel("Hurt")

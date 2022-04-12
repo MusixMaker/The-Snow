@@ -78,6 +78,8 @@ func get_input():
 			
 
 func _process(delta):
+	#print(state_machine.get_current_node())
+	#print(is_attacking)
 	get_input()
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
@@ -106,6 +108,7 @@ func _process(delta):
 
 
 func _on_HitArea_area_entered(area):
+	print("I'll kill around you")
 	if area.is_in_group("Enemies"):
 		area.take_damage()
 		
@@ -116,3 +119,11 @@ func take_damage(dam: int, dir: Vector2) -> void:
 		state_machine.travel("Hurt")
 	else:
 		state_machine.travel("Dead")
+
+
+func _on_Hitbox_body_entered(body):
+	print("I'll kill you")
+	if "Evil" in body.name:
+		body.take_damage(1)
+	if body.is_in_group("Enemies"):
+		body.take_damage()

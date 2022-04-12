@@ -17,6 +17,7 @@ tile_data = PoolIntArray( -983080, 6, 0, -983079, -1610612730, 0, -983078, -1610
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 264 )
+collision_layer = 7
 is_attacking = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
