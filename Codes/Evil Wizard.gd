@@ -20,6 +20,7 @@ const FLOOR = Vector2(0,-1)
 
 var vel = Vector2()
 var dir = 1
+var dam = 1
 
 func _ready():
 	pass 
@@ -55,7 +56,7 @@ func _physics_process(delta):
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 
-func take_damage(dam: int) -> void:
+func take_damage():
 	print("you will try")
 	hp -= dam
 	if hp >= 0:

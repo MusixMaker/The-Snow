@@ -33,6 +33,8 @@ onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var ap = $AnimationPlayer
 onready var player = get_node("AnimationPlayer")
+onready var dam = 1
+onready var dead = false
 
 func _ready():
 	state_machine.start("Idle")
@@ -69,18 +71,20 @@ func get_input():
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
-	if Input.is_action_just_pressed("attack") and is_on_floor():
+	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false:
 		is_attacking = true
 		state_machine.travel("Attack 1")
 	if Input.get_action_strength("ui_up") and is_on_floor():
 		state_machine.travel("Jump")
 		vel.y = jump_speed
-			
+
+	
 
 func _process(delta):
 	#print(state_machine.get_current_node())
 	#print(is_attacking)
-	get_input()
+	if dead == false:
+		get_input()
 	if vel == Vector2.ZERO:
 		state_machine.travel("Idle")
 	elif vel.x != 0:
@@ -107,23 +111,28 @@ func _process(delta):
 	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
 
 
-func _on_HitArea_area_entered(area):
-	print("I'll kill around you")
-	if area.is_in_group("Enemies"):
-		area.take_damage()
-		
-func take_damage(dam: int, dir: Vector2) -> void:
-	print("hurt")
+func take_damage() -> void:
+	print(hp)
 	hp -= dam
-	if hp >= 0:
+	if hp >= 1:
 		state_machine.travel("Hurt")
-	else:
+	elif hp <=1:
+		print("dead")
+		dead = true
 		state_machine.travel("Dead")
+		var t = Timer.new()
+		t.set_wait_time(10)
+		add_child(t)
+		t.start()
+		yield(t, "timeout")
+		queue_free()
 
 
 func _on_Hitbox_body_entered(body):
 	print("I'll kill you")
-	if "Evil" in body.name:
-		body.take_damage(1)
+	body.take_damage()
 	if body.is_in_group("Enemies"):
+		print("hi")
 		body.take_damage()
+	if body.get_name() == "Evil Wizard":
+		print("Wizzo")
