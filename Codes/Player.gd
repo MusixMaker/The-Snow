@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var hp: int = 2
+export (int) var hp: int = 10
 export (int) var speed = 200
 export (int) var jump_speed = -250
 export (int) var gravity = 500
@@ -73,6 +73,7 @@ func get_input():
 		vel.x = move_toward(vel.x, 0, friction)
 	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false:
 		is_attacking = true
+		take_damage()
 		state_machine.travel("Attack 1")
 	if Input.get_action_strength("ui_up") and is_on_floor():
 		state_machine.travel("Jump")
@@ -111,20 +112,14 @@ func _process(delta):
 	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
 
 
-func take_damage() -> void:
-	print(hp)
+func take_damage():
 	hp -= dam
 	if hp >= 1:
 		state_machine.travel("Hurt")
-	elif hp <=1:
+	elif hp <=0:
 		print("dead")
 		dead = true
 		state_machine.travel("Dead")
-		var t = Timer.new()
-		t.set_wait_time(10)
-		add_child(t)
-		t.start()
-		yield(t, "timeout")
 		queue_free()
 
 
