@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Models/Evil Wizard/Sprites/Move.png" type="Texture" id=1]
 [ext_resource path="res://Models/Evil Wizard/Sprites/Attack.png" type="Texture" id=2]
@@ -45,6 +45,22 @@ region = Rect2( 900, 0, 150, 150 )
 atlas = ExtResource( 3 )
 region = Rect2( 1050, 0, 150, 150 )
 
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 5 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 5 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 5 )
+region = Rect2( 450, 0, 150, 150 )
+
 [sub_resource type="AtlasTexture" id=56]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 150, 150 )
@@ -64,22 +80,6 @@ region = Rect2( 450, 0, 150, 150 )
 [sub_resource type="AtlasTexture" id=60]
 atlas = ExtResource( 4 )
 region = Rect2( 600, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=69]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=70]
-atlas = ExtResource( 5 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=71]
-atlas = ExtResource( 5 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=72]
-atlas = ExtResource( 5 )
-region = Rect2( 450, 0, 150, 150 )
 
 [sub_resource type="AtlasTexture" id=61]
 atlas = ExtResource( 2 )
@@ -152,14 +152,14 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ) ],
-"loop": true,
-"name": "Death",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ) ],
 "loop": true,
 "name": "Hurt",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ) ],
+"loop": true,
+"name": "Death",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
@@ -205,7 +205,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=74]
 resource_name = "Death"
 length = 0.9
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
@@ -383,21 +382,25 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=92]
+
 [sub_resource type="AnimationNodeStateMachine" id=82]
 states/Attack/node = SubResource( 77 )
 states/Attack/position = Vector2( 562, 48 )
 states/Death/node = SubResource( 78 )
 states/Death/position = Vector2( 572, 298 )
 states/Hurt/node = SubResource( 79 )
-states/Hurt/position = Vector2( 309, 182 )
+states/Hurt/position = Vector2( 307, 118 )
 states/Idle/node = SubResource( 80 )
 states/Idle/position = Vector2( 550, 167 )
 states/Move/node = SubResource( 81 )
-states/Move/position = Vector2( 803, 139 )
-transitions = [ "Idle", "Attack", SubResource( 84 ), "Idle", "Move", SubResource( 85 ), "Idle", "Death", SubResource( 86 ), "Idle", "Hurt", SubResource( 87 ), "Attack", "Idle", SubResource( 88 ), "Move", "Idle", SubResource( 89 ), "Hurt", "Idle", SubResource( 90 ) ]
+states/Move/position = Vector2( 787, 100 )
+transitions = [ "Idle", "Attack", SubResource( 84 ), "Idle", "Move", SubResource( 85 ), "Idle", "Death", SubResource( 86 ), "Idle", "Hurt", SubResource( 87 ), "Attack", "Idle", SubResource( 88 ), "Move", "Idle", SubResource( 89 ), "Hurt", "Idle", SubResource( 90 ), "Move", "Hurt", SubResource( 91 ), "Move", "Death", SubResource( 92 ) ]
 start_node = "Idle"
 end_node = "Death"
-graph_offset = Vector2( 0, 84.5 )
+graph_offset = Vector2( 0, 243.36 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=83]
 
@@ -414,6 +417,7 @@ shape = SubResource( 35 )
 visible = false
 position = Vector2( 5, 0.5 )
 shape = SubResource( 36 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 73 )

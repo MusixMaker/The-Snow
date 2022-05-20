@@ -73,7 +73,6 @@ func get_input():
 		vel.x = move_toward(vel.x, 0, friction)
 	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false:
 		is_attacking = true
-		take_damage()
 		state_machine.travel("Attack 1")
 	if Input.get_action_strength("ui_up") and is_on_floor():
 		state_machine.travel("Jump")
@@ -113,6 +112,7 @@ func _process(delta):
 
 
 func take_damage():
+	print("ow")
 	hp -= dam
 	if hp >= 1:
 		state_machine.travel("Hurt")
@@ -124,10 +124,5 @@ func take_damage():
 
 
 func _on_Hitbox_body_entered(body):
-	print("I'll kill you")
-	body.take_damage()
 	if body.is_in_group("Enemies"):
-		print("hi")
-		body.take_damage()
-	if body.get_name() == "Evil Wizard":
-		print("Wizzo")
+		body.deal_damage()

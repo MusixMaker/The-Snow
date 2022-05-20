@@ -13,6 +13,7 @@ export (int) var hp: int = 2
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
+onready var collision = $Hitbox
 
 const GRAVITY = 7.75
 const SPEED = 50
@@ -29,11 +30,11 @@ func dead():
 	is_dead = true
 	vel = Vector2(0,0)
 	state_machine.travel("Death")
+	collision.queue_free()
 	print('RRRAAAARGH')
 	
 
 func _physics_process(delta):
-	#print(hp)
 	if is_dead == false:
 		vel.x = SPEED * dir
 		
@@ -56,10 +57,11 @@ func _physics_process(delta):
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 
-func take_damage():
-	print("you will try")
+func deal_damage():
+	#print("you will try")
 	hp -= dam
 	if hp >= 0:
+		#print("Damaged")
 		state_machine.travel("Hurt")
-	else:
-		state_machine.travel("Dead")
+	elif hp <= 1:
+		dead()
