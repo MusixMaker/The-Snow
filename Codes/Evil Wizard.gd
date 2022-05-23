@@ -16,12 +16,13 @@ onready var state
 onready var collision = $Hitbox
 
 const GRAVITY = 7.75
-const SPEED = 50
+const SPEED = 40
 const FLOOR = Vector2(0,-1)
 
 var vel = Vector2()
 var dir = 1
 var dam = 1
+var hit = false
 
 func _ready():
 	pass 
@@ -33,9 +34,8 @@ func dead():
 	collision.queue_free()
 	print('RRRAAAARGH')
 	
-
 func _physics_process(delta):
-	if is_dead == false:
+	if is_dead == false and hit == false:
 		vel.x = SPEED * dir
 		
 		if dir == 1:
@@ -43,7 +43,6 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite.flip_h = true
 		
-		state_machine.travel("Move")
 		vel.y += GRAVITY
 		
 		vel = move_and_slide(vel, FLOOR)
@@ -58,10 +57,11 @@ func _physics_process(delta):
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 
 func deal_damage():
-	#print("you will try")
 	hp -= dam
-	if hp >= 0:
-		#print("Damaged")
-		state_machine.travel("Hurt")
-	elif hp <= 1:
+	if hp < 1:
 		dead()
+	else:
+		state_machine.travel("Hurt")
+		hit = true
+		yield(get_tree().create_timer(0.4), "timeout")
+		hit = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Models/Fireworm/Worm/Walk.png" type="Texture" id=1]
 [ext_resource path="res://Models/Fireworm/Worm/Get Hit.png" type="Texture" id=2]
@@ -74,6 +74,18 @@ region = Rect2( 540, 0, 90, 90 )
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 5 )
 region = Rect2( 630, 0, 90, 90 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 90, 90 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 90, 0, 90, 90 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 180, 0, 90, 90 )
 
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 4 )
@@ -175,18 +187,6 @@ region = Rect2( 630, 0, 90, 90 )
 atlas = ExtResource( 1 )
 region = Rect2( 720, 0, 90, 90 )
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 90, 90 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 90, 0, 90, 90 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 180, 0, 90, 90 )
-
 [sub_resource type="SpriteFrames" id=46]
 animations = [ {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
@@ -199,6 +199,11 @@ animations = [ {
 "name": "Death",
 "speed": 7.0
 }, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "Get Hit",
+"speed": 0.0
+}, {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
 "loop": true,
 "name": "Attack",
@@ -208,11 +213,6 @@ animations = [ {
 "loop": true,
 "name": "Move",
 "speed": 10.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "Get Hit",
-"speed": 0.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=47]
@@ -246,7 +246,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Normal Collision:disabled")
+tracks/2/path = NodePath("../Hitbox:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -298,7 +298,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../Normal Collision:disabled")
+tracks/2/path = NodePath("../Hitbox:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -362,7 +362,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Normal Collision:disabled")
+tracks/3/path = NodePath("../Hitbox:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -415,7 +415,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Normal Collision:disabled")
+tracks/3/path = NodePath("../Hitbox:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -468,7 +468,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../Normal Collision:disabled")
+tracks/3/path = NodePath("../Hitbox:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -489,81 +489,55 @@ animation = "Death"
 [sub_resource type="AnimationNodeAnimation" id=56]
 animation = "Get Hit"
 
-[sub_resource type="AnimationNodeAnimation" id=57]
-animation = "Idle"
-
 [sub_resource type="AnimationNodeAnimation" id=58]
 animation = "Move"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
-advance_condition = "IsMoving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-advance_condition = "NotIsMoving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-advance_condition = "IsDead"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=62]
 advance_condition = "IsDead"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=63]
-advance_condition = "IsDead"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=64]
-advance_condition = "Hit"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=65]
-switch_mode = 2
-advance_condition = "NotIsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=66]
 advance_condition = "Hit"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=67]
 switch_mode = 2
-advance_condition = "IsMoving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=68]
-advance_condition = "IsAttacking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=69]
-switch_mode = 2
 auto_advance = true
+advance_condition = "IsMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 advance_condition = "IsAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=72]
 states/Attack/node = SubResource( 54 )
 states/Attack/position = Vector2( 575, 238.62 )
 states/Death/node = SubResource( 55 )
-states/Death/position = Vector2( 575, 52 )
+states/Death/position = Vector2( 475, 76 )
 "states/Get Hit/node" = SubResource( 56 )
 "states/Get Hit/position" = Vector2( 575, -96.38 )
-states/Idle/node = SubResource( 57 )
-states/Idle/position = Vector2( 409, 120 )
 states/Move/node = SubResource( 58 )
 states/Move/position = Vector2( 742, 120 )
-transitions = [ "Idle", "Move", SubResource( 59 ), "Move", "Idle", SubResource( 60 ), "Idle", "Death", SubResource( 61 ), "Move", "Death", SubResource( 62 ), "Get Hit", "Death", SubResource( 63 ), "Idle", "Get Hit", SubResource( 64 ), "Get Hit", "Idle", SubResource( 65 ), "Move", "Get Hit", SubResource( 66 ), "Get Hit", "Move", SubResource( 67 ), "Idle", "Attack", SubResource( 68 ), "Attack", "Idle", SubResource( 69 ), "Move", "Attack", SubResource( 70 ) ]
-start_node = "Idle"
+transitions = [ "Move", "Death", SubResource( 62 ), "Move", "Get Hit", SubResource( 66 ), "Get Hit", "Move", SubResource( 67 ), "Move", "Attack", SubResource( 70 ), "Attack", "Move", SubResource( 75 ) ]
+start_node = "Move"
 end_node = "Death"
-graph_offset = Vector2( 0, 35.454 )
+graph_offset = Vector2( 0, -96.7708 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=73]
 
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 30, 7 )
 
-[node name="Fireworm" type="KinematicBody2D"]
+[node name="Fireworm" type="KinematicBody2D" groups=["Enemies"]]
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 46 )
-animation = "Idle"
-frame = 6
+animation = "Move"
+frame = 7
 
-[node name="Normal Collision" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -2, -1.5 )
 shape = SubResource( 47 )
 
@@ -584,7 +558,6 @@ parameters/conditions/Hit = false
 parameters/conditions/IsAttacking = false
 parameters/conditions/IsDead = false
 parameters/conditions/IsMoving = false
-parameters/conditions/NotIsMoving = false
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 24, 0 )
