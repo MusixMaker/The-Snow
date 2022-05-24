@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Models/Evil Wizard/Sprites/Move.png" type="Texture" id=1]
 [ext_resource path="res://Models/Evil Wizard/Sprites/Attack.png" type="Texture" id=2]
@@ -9,9 +9,6 @@
 
 [sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 15.5, 25.75 )
-
-[sub_resource type="RectangleShape2D" id=36]
-extents = Vector2( 18, 25.5 )
 
 [sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 1 )
@@ -77,6 +74,38 @@ region = Rect2( 900, 0, 150, 150 )
 atlas = ExtResource( 3 )
 region = Rect2( 1050, 0, 150, 150 )
 
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 2 )
+region = Rect2( 150, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 2 )
+region = Rect2( 300, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 2 )
+region = Rect2( 450, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 2 )
+region = Rect2( 600, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 2 )
+region = Rect2( 750, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 2 )
+region = Rect2( 900, 0, 150, 150 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 2 )
+region = Rect2( 1050, 0, 150, 150 )
+
 [sub_resource type="AtlasTexture" id=69]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 150, 150 )
@@ -113,38 +142,6 @@ region = Rect2( 450, 0, 150, 150 )
 atlas = ExtResource( 4 )
 region = Rect2( 600, 0, 150, 150 )
 
-[sub_resource type="AtlasTexture" id=61]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=62]
-atlas = ExtResource( 2 )
-region = Rect2( 150, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=63]
-atlas = ExtResource( 2 )
-region = Rect2( 300, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=64]
-atlas = ExtResource( 2 )
-region = Rect2( 450, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=65]
-atlas = ExtResource( 2 )
-region = Rect2( 600, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=66]
-atlas = ExtResource( 2 )
-region = Rect2( 750, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=67]
-atlas = ExtResource( 2 )
-region = Rect2( 900, 0, 150, 150 )
-
-[sub_resource type="AtlasTexture" id=68]
-atlas = ExtResource( 2 )
-region = Rect2( 1050, 0, 150, 150 )
-
 [sub_resource type="SpriteFrames" id=73]
 animations = [ {
 "frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
@@ -157,6 +154,11 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
+"loop": true,
+"name": "Attack",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ) ],
 "loop": true,
 "name": "Hurt",
@@ -165,11 +167,6 @@ animations = [ {
 "frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ) ],
 "loop": true,
 "name": "Death",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
-"loop": true,
-"name": "Attack",
 "speed": 5.0
 } ]
 
@@ -385,24 +382,16 @@ states/Move/position = Vector2( 562, 161 )
 transitions = [ "Move", "Attack", SubResource( 84 ), "Move", "Hurt", SubResource( 85 ), "Move", "Death", SubResource( 86 ), "Hurt", "Move", SubResource( 87 ), "Attack", "Move", SubResource( 88 ) ]
 start_node = "Move"
 end_node = "Death"
-graph_offset = Vector2( -24, 10 )
+graph_offset = Vector2( -24, 60.7 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=83]
 
 [node name="Evil Wizard" type="KinematicBody2D" groups=["Enemies"]]
-collision_layer = 4
-collision_mask = 4
 script = ExtResource( 6 )
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, 0.5 )
 shape = SubResource( 35 )
-
-[node name="Walk Hit" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 5, 0.5 )
-shape = SubResource( 36 )
-disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 73 )

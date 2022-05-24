@@ -9,7 +9,7 @@ enum{
 }
 
 export var is_dead = false
-export (int) var hp: int = 2
+export (int) var hp: int = 5
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state

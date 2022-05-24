@@ -10,6 +10,7 @@ export var is_attacking_2 = false
 
 var vel = Vector2.ZERO
 var dir
+var direction = 39
 
 
 
@@ -99,8 +100,10 @@ func _process(delta):
 	#handle_state(state)
 	if vel.x < 0:
 		$AnimatedSprite.flip_h = true
+		$AnimatedSprite/Hitbox/HitArea.position.x = -direction
 	if vel.x > 0:
 		$AnimatedSprite.flip_h = false
+		$AnimatedSprite/Hitbox/HitArea.position.x = direction
 	
 	vel.y += gravity*delta
 	#if is_attacking == true:
@@ -124,5 +127,8 @@ func take_damage():
 
 
 func _on_Hitbox_body_entered(body):
+	print(body.name)
 	if body.is_in_group("Enemies"):
+		body.deal_damage()
+	if body.is_in_group("Worm"):
 		body.deal_damage()
