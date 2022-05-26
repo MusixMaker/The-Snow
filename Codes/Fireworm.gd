@@ -9,7 +9,7 @@ enum{
 }
 
 export var is_dead = false
-export (int) var hp: int = 2
+export (int) var hp: int = 5
 
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
@@ -37,7 +37,7 @@ func dead():
 
 func _physics_process(delta):
 
-	if is_dead == false:
+	if is_dead == false and hit == false:
 		vel.x = SPEED * dir
 		
 		if dir == 1:
@@ -69,5 +69,5 @@ func deal_damage():
 	else:
 		state_machine.travel("Hurt")
 		hit = true
-		yield(get_tree().create_timer(0.4), "timeout")
+		yield(get_tree().create_timer(0.3), "timeout")
 		hit = false

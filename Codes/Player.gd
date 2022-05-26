@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export (int) var hp: int = 10
 export (int) var speed = 200
-export (int) var jump_speed = -250
+export (int) var jump_speed = -265
 export (int) var gravity = 500
 export (int) var slide_speed = 400
 export var is_attacking = false
@@ -68,13 +68,19 @@ func _ready():
 
 func get_input():
 	dir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if dir != 0 and is_attacking == false:
+	if dir != 0 and is_attacking == false and is_attacking_2 == false:
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
 	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false:
-		is_attacking = true
+		#is_attacking = true
 		state_machine.travel("Attack 1")
+	elif Input.is_action_just_pressed("attack_2") and is_on_floor() and dead == false:
+		#is_attacking_2 = true
+		state_machine.travel("Attack 2")
+	elif Input.is_action_just_pressed("attack_combo") and is_on_floor() and dead == false:
+		#combo = true
+		state_machine.travel("Combo")
 	if Input.get_action_strength("ui_up") and is_on_floor():
 		state_machine.travel("Jump")
 		vel.y = jump_speed
@@ -110,8 +116,9 @@ func _process(delta):
 	#	vel.x = 0
 	vel = move_and_slide(vel, Vector2.UP)
 	
-	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
-	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
+	#$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
+	#$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
+	#$AnimationTree["parameters/conditions/Combo"] = combo
 
 
 func take_damage():
