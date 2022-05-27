@@ -6,7 +6,6 @@ export (int) var jump_speed = -265
 export (int) var gravity = 500
 export (int) var slide_speed = 400
 export var is_attacking = false
-export var is_attacking_2 = false
 
 var vel = Vector2.ZERO
 var dir
@@ -68,19 +67,25 @@ func _ready():
 
 func get_input():
 	dir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if dir != 0 and is_attacking == false and is_attacking_2 == false:
+	if dir != 0 and is_attacking == false:
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
-	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false:
-		#is_attacking = true
-		state_machine.travel("Attack 1")
-	elif Input.is_action_just_pressed("attack_2") and is_on_floor() and dead == false:
-		#is_attacking_2 = true
+	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false and is_attacking == false:
+		is_attacking = true
+		state_machine.travel("Attack")
+		yield(get_tree().create_timer(0.1), "timeout")
+		is_attacking = false
+	elif Input.is_action_just_pressed("attack_2") and is_on_floor() and dead == false and is_attacking == false:
+		is_attacking = true
 		state_machine.travel("Attack 2")
-	elif Input.is_action_just_pressed("attack_combo") and is_on_floor() and dead == false:
-		#combo = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		is_attacking = false
+	elif Input.is_action_just_pressed("attack_combo") and is_on_floor() and dead == false and is_attacking == false:
+		is_attacking = true
 		state_machine.travel("Combo")
+		yield(get_tree().create_timer(0.1), "timeout")
+		is_attacking = false
 	if Input.get_action_strength("ui_up") and is_on_floor():
 		state_machine.travel("Jump")
 		vel.y = jump_speed
@@ -88,7 +93,7 @@ func get_input():
 	
 
 func _process(delta):
-	#print(state_machine.get_current_node())
+	print(state_machine.get_current_node())
 	#print(is_attacking)
 	if dead == false:
 		get_input()
@@ -116,9 +121,7 @@ func _process(delta):
 	#	vel.x = 0
 	vel = move_and_slide(vel, Vector2.UP)
 	
-	#$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
-	#$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
-	#$AnimationTree["parameters/conditions/Combo"] = combo
+	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
 
 
 func take_damage():
@@ -134,7 +137,7 @@ func take_damage():
 
 
 func _on_Hitbox_body_entered(body):
-	print(body.name)
+	#print(body.name)
 	if body.is_in_group("Enemies"):
 		body.deal_damage()
 	if body.is_in_group("Worm"):
