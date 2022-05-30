@@ -6,6 +6,9 @@ export (int) var jump_speed = -265
 export (int) var gravity = 500
 export (int) var slide_speed = 400
 export var is_attacking = false
+export var is_attacking_2 = false
+export var combo = false
+export var attacks = false
 
 var vel = Vector2.ZERO
 var dir
@@ -66,34 +69,38 @@ func _ready():
 #	pass
 
 func get_input():
+	if is_attacking == false and is_attacking_2 == false and combo == false:
+		attacks = false
+	else:
+		attacks = true
 	dir = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	if dir != 0 and is_attacking == false:
+	if dir != 0 and attacks == false:
 		vel.x = move_toward(vel.x, dir*speed, acceleration)
 	else:
 		vel.x = move_toward(vel.x, 0, friction)
-	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false and is_attacking == false:
+	if Input.is_action_just_pressed("attack") and is_on_floor() and dead == false and attacks == false:
 		is_attacking = true
 		state_machine.travel("Attack")
-		yield(get_tree().create_timer(0.1), "timeout")
-		is_attacking = false
-	elif Input.is_action_just_pressed("attack_2") and is_on_floor() and dead == false and is_attacking == false:
-		is_attacking = true
+		#yield(get_tree().create_timer(0.1), "timeout")
+		#is_attacking = false
+	elif Input.is_action_just_pressed("attack_2") and is_on_floor() and dead == false and attacks == false:
+		is_attacking_2 = true
 		state_machine.travel("Attack 2")
-		yield(get_tree().create_timer(0.1), "timeout")
-		is_attacking = false
-	elif Input.is_action_just_pressed("attack_combo") and is_on_floor() and dead == false and is_attacking == false:
-		is_attacking = true
+		#yield(get_tree().create_timer(0.1), "timeout")
+		#is_attacking_2 = false
+	elif Input.is_action_just_pressed("attack_combo") and is_on_floor() and dead == false and attacks == false:
+		combo = true
 		state_machine.travel("Combo")
-		yield(get_tree().create_timer(0.1), "timeout")
-		is_attacking = false
-	if Input.get_action_strength("ui_up") and is_on_floor():
+		#yield(get_tree().create_timer(0.1), "timeout")
+		#combo = false
+	if Input.get_action_strength("ui_up") and is_on_floor() and attacks == false:
 		state_machine.travel("Jump")
 		vel.y = jump_speed
 
 	
 
 func _process(delta):
-	print(state_machine.get_current_node())
+	#print(state_machine.get_current_node())
 	#print(is_attacking)
 	if dead == false:
 		get_input()
@@ -122,6 +129,8 @@ func _process(delta):
 	vel = move_and_slide(vel, Vector2.UP)
 	
 	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
+	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
+	$AnimationTree["parameters/conditions/Combo"] = combo
 
 
 func take_damage():
