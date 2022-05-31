@@ -33,7 +33,6 @@ func dead():
 	state_machine.travel("Death")
 	$Top.queue_free()
 	$Bottom.queue_free()
-	print('AAAAAAAH')
 
 func _physics_process(delta):
 

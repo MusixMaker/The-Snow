@@ -32,7 +32,6 @@ func dead():
 	vel = Vector2(0,0)
 	state_machine.travel("Death")
 	collision.queue_free()
-	print('RRRAAAARGH')
 	
 func _physics_process(delta):
 	if is_dead == false and hit == false:
