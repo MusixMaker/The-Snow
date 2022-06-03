@@ -93,7 +93,7 @@ func get_input():
 		state_machine.travel("Combo")
 		#yield(get_tree().create_timer(0.1), "timeout")
 		#combo = false
-	if Input.get_action_strength("ui_up") and is_on_floor() and attacks == false:
+	if Input.get_action_strength("ui_up") and attacks == false:
 		state_machine.travel("Jump")
 		vel.y = jump_speed
 
