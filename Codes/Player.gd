@@ -13,7 +13,7 @@ export var attacks = false
 var vel = Vector2.ZERO
 var dir
 var direction = 39
-
+var bird = true
 
 
 export (float) var friction = 10

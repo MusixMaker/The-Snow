@@ -30,7 +30,7 @@ drag_margin_bottom = 0.5
 editor_draw_drag_margin = true
 
 [node name="Fireworm" parent="." instance=ExtResource( 3 )]
-position = Vector2( 377, 253 )
+position = Vector2( 408, 240 )
 collision_layer = 7
 collision_mask = 7
 
