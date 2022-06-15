@@ -15,7 +15,6 @@ var dir
 var direction = 39
 var bird = true
 
-
 export (float) var friction = 10
 export (float) var acceleration = 25
 
