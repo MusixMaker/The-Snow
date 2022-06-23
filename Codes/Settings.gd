@@ -3,13 +3,13 @@ extends Control
 export onready var ap = $AnimationPlayer
 export var muted = false
 export onready var music = $VBoxContainer/HSlider
-export onready var mutey = $VBoxContainer/ColorRect/Sound
+export onready var mutey = $"VBoxContainer/Mute Colour/Sound"
 export onready var current_noise
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	music.value = 100
-	$VBoxContainer/ColorRect/Sound.grab_focus()
+	$"VBoxContainer/Mute Colour/Sound".grab_focus()
 
 func _physics_process(delta):
 	if music.value < 10:
@@ -39,4 +39,7 @@ func _on_Keys_pressed():
 
 
 func _on_Back_pressed():
-	get_tree().change_scene("res://Scenes/Title Screen.tscn")
+	pass
+	
+func _on_Quit_Pressed():
+	get_tree().quit()

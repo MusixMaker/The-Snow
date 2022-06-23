@@ -4,7 +4,7 @@
 Button/colors/font_color = Color( 0, 0.929412, 1, 1 )
 Button/colors/font_color_disabled = Color( 0, 0.929412, 1, 1 )
 Button/colors/font_color_focus = Color( 0, 0.929412, 1, 1 )
-Button/colors/font_color_hover = Color( 0, 0.0627451, 1, 1 )
+Button/colors/font_color_hover = Color( 0, 0.929412, 1, 1 )
 Button/colors/font_color_pressed = Color( 1, 0, 0, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
@@ -20,7 +20,7 @@ CheckButton/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
 CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckButton/constants/check_vadjust = 0
-CheckButton/constants/hseparation = 4
+CheckButton/constants/hseparation = 2
 CheckButton/fonts/font = null
 CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null

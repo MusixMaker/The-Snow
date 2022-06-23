@@ -39,7 +39,7 @@ CheckButton/styles/pressed = null
 [sub_resource type="Animation" id=2]
 resource_name = "Muted"
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/ColorRect/Sound:text")
+tracks/0/path = NodePath("VBoxContainer/Mute Colour/Sound:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ "Muted" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/ColorRect:rect_size")
+tracks/1/path = NodePath("VBoxContainer/Mute Colour:rect_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -62,11 +62,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 256, 40 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/Volume Colour:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 50 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/ColorRect/Sound:text")
+tracks/0/path = NodePath("VBoxContainer/Mute Colour/Sound:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -78,7 +90,7 @@ tracks/0/keys = {
 "values": [ "Sound On" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/ColorRect:rect_size")
+tracks/1/path = NodePath("VBoxContainer/Mute Colour:rect_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -89,11 +101,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 256, 40 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/Volume Colour:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 50 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Unmuted"
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/ColorRect/Sound:text")
+tracks/0/path = NodePath("VBoxContainer/Mute Colour/Sound:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -105,7 +129,7 @@ tracks/0/keys = {
 "values": [ "Sound On" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/ColorRect:rect_size")
+tracks/1/path = NodePath("VBoxContainer/Mute Colour:rect_size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -115,6 +139,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 256, 40 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/Volume Colour:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 50 ) ]
 }
 
 [node name="Settings" type="Control"]
@@ -132,12 +168,12 @@ margin_top = -82.0
 margin_right = 3.0
 margin_bottom = 78.0
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+[node name="Mute Colour" type="ColorRect" parent="VBoxContainer"]
 margin_right = 256.0
 margin_bottom = 40.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="Sound" type="CheckButton" parent="VBoxContainer/ColorRect"]
+[node name="Sound" type="CheckButton" parent="VBoxContainer/Mute Colour"]
 margin_right = 256.0
 margin_bottom = 40.0
 theme = SubResource( 1 )
@@ -160,38 +196,44 @@ margin_top = 40.0
 margin_right = 256.0
 margin_bottom = 54.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Volume Colour" type="ColorRect" parent="VBoxContainer"]
 margin_top = 58.0
 margin_right = 256.0
-margin_bottom = 72.0
+margin_bottom = 108.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 62.0
+margin_right = 256.0
+margin_bottom = 76.0
 text = "Volume"
 align = 1
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer"]
-margin_top = 76.0
+margin_top = 80.0
 margin_right = 256.0
-margin_bottom = 92.0
+margin_bottom = 96.0
 step = 10.0
 tick_count = 11
 ticks_on_borders = true
 
 [node name="Spacer4" type="Label" parent="VBoxContainer"]
-margin_top = 96.0
+margin_top = 100.0
 margin_right = 256.0
-margin_bottom = 110.0
+margin_bottom = 114.0
 
 [node name="Keys" type="Button" parent="VBoxContainer"]
-margin_top = 114.0
+margin_top = 118.0
 margin_right = 256.0
-margin_bottom = 134.0
+margin_bottom = 138.0
 theme = ExtResource( 2 )
 text = "Control Setup"
 
 [node name="Back" type="Button" parent="VBoxContainer"]
-margin_top = 138.0
+margin_top = 142.0
 margin_right = 256.0
-margin_bottom = 158.0
+margin_bottom = 162.0
 theme = ExtResource( 2 )
 text = "Back"
 
@@ -200,6 +242,6 @@ anims/Muted = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 anims/Unmuted = SubResource( 4 )
 
-[connection signal="pressed" from="VBoxContainer/ColorRect/Sound" to="." method="_on_CheckButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mute Colour/Sound" to="." method="_on_CheckButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Keys" to="." method="_on_Keys_pressed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_Back_pressed"]

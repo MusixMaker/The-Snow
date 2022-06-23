@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (int) var hp: int = 10
 export (int) var speed = 200
+export (int) var double_jump = 1
 export (int) var jump_speed = -265
 export (int) var gravity = 500
 export (int) var slide_speed = 400
@@ -68,6 +69,7 @@ func _ready():
 #	pass
 
 func get_input():
+	print(double_jump)
 	if is_attacking == false and is_attacking_2 == false and combo == false:
 		attacks = false
 	else:
@@ -93,9 +95,17 @@ func get_input():
 		#yield(get_tree().create_timer(0.1), "timeout")
 		#combo = false
 	if Input.get_action_strength("ui_up") and attacks == false:
-		state_machine.travel("Jump")
-		vel.y = jump_speed
-
+		if is_on_floor():
+			state_machine.travel("Jump")
+			vel.y = jump_speed
+		elif not is_on_floor() and double_jump == 1:
+			state_machine.travel("Jump")
+			vel.y = jump_speed
+			double_jump = 0
+			
+			
+	if is_on_floor():
+		double_jump = 1
 	
 
 func _process(delta):
