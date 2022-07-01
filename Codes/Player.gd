@@ -98,14 +98,18 @@ func get_input():
 		if is_on_floor():
 			state_machine.travel("Jump")
 			vel.y = jump_speed
+			
 		elif not is_on_floor() and double_jump == 1:
 			state_machine.travel("Jump")
 			vel.y = jump_speed
-			double_jump = 0
+			double_jump = 1
 			
 			
 	if is_on_floor():
 		double_jump = 1
+		
+	if Input.is_action_pressed("Pause"):
+		get_tree().change_scene("res://Scenes/Pause.tscn")
 	
 
 func _process(delta):

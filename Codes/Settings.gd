@@ -39,7 +39,7 @@ func _on_Keys_pressed():
 
 
 func _on_Back_pressed():
-	pass
+	get_tree().change_scene("res://Scenes/Title Screen.tscn")
 	
 func _on_Quit_Pressed():
 	get_tree().quit()

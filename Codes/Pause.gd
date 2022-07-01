@@ -13,6 +13,11 @@ func _ready():
 	$"VBoxContainer/Mute Colour/Sound".grab_focus()
 
 func _physics_process(delta):
+	if Input.is_action_pressed("Pause"):
+		var new_pause_state = not get_tree().paused
+		get_tree().paused = new_pause_state
+		visible = new_pause_state
+	
 	if music.value < 10:
 		muted = true
 		ap.play("Muted")
@@ -40,8 +45,8 @@ func _on_Keys_pressed():
 
 
 func _on_Quit_pressed():
-	pass
+	get_tree().quit()
 
 
 func _on_Restart_pressed():
-	pass
+	get_tree().change_scene("res://Scenes/World.tscn")

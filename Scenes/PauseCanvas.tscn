@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tryout for theme.tres" type="Theme" id=1]
+[ext_resource path="res://Codes/Pause.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
+Button/colors/font_color = Color( 0, 0.929412, 1, 1 )
+Button/colors/font_color_disabled = Color( 0, 0.929412, 1, 1 )
+Button/colors/font_color_focus = Color( 0, 0.929412, 1, 1 )
+Button/colors/font_color_hover = Color( 0, 0.0627451, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 0, 0, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+CheckButton/colors/font_color = Color( 1, 0, 0, 1 )
+CheckButton/colors/font_color_disabled = Color( 1, 1, 1, 0.2 )
+CheckButton/colors/font_color_focus = Color( 1, 0, 0, 1 )
+CheckButton/colors/font_color_hover = Color( 1, 0, 0, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 0, 0, 1 )
+CheckButton/colors/font_color_pressed = Color( 0, 0.592157, 0.0235294, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+
+[node name="Pause" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( -1012, -41 )
+color = Color( 0, 0, 0, 0.588235 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.5
+margin_left = 3.0
+margin_top = -160.0
+margin_right = 3.0
+margin_bottom = 46.0
+
+[node name="Mute Colour" type="ColorRect" parent="Background/VBoxContainer"]
+margin_right = 256.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="Sound" type="CheckButton" parent="Background/VBoxContainer/Mute Colour"]
+margin_right = 256.0
+margin_bottom = 40.0
+theme = SubResource( 1 )
+pressed = true
+text = "Sound On"
+align = 1
+
+[node name="Spacer" type="Label" parent="Background/VBoxContainer"]
+margin_top = 4.0
+margin_right = 256.0
+margin_bottom = 18.0
+
+[node name="Spacer2" type="Label" parent="Background/VBoxContainer"]
+margin_top = 22.0
+margin_right = 256.0
+margin_bottom = 36.0
+
+[node name="Spacer3" type="Label" parent="Background/VBoxContainer"]
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 54.0
+
+[node name="Label" type="Label" parent="Background/VBoxContainer"]
+margin_top = 58.0
+margin_right = 256.0
+margin_bottom = 72.0
+text = "Volume"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="Background/VBoxContainer"]
+margin_top = 76.0
+margin_right = 256.0
+margin_bottom = 92.0
+step = 10.0
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Spacer4" type="Label" parent="Background/VBoxContainer"]
+margin_top = 96.0
+margin_right = 256.0
+margin_bottom = 110.0
+
+[node name="Keys" type="Button" parent="Background/VBoxContainer"]
+margin_top = 114.0
+margin_right = 256.0
+margin_bottom = 134.0
+theme = ExtResource( 1 )
+text = "Control Setup"
+
+[node name="Resume" type="Button" parent="Background/VBoxContainer"]
+margin_top = 138.0
+margin_right = 256.0
+margin_bottom = 158.0
+theme = ExtResource( 1 )
+text = "Resume"
+
+[node name="Restart" type="Button" parent="Background/VBoxContainer"]
+margin_top = 162.0
+margin_right = 256.0
+margin_bottom = 182.0
+theme = ExtResource( 1 )
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Background/VBoxContainer"]
+margin_top = 186.0
+margin_right = 256.0
+margin_bottom = 206.0
+theme = ExtResource( 1 )
+text = "Quit"
