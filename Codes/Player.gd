@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export (int) var hp: int = 10
 export (int) var speed = 200
-export (int) var double_jump = 1
+export (int) var jump_count = 0
 export (int) var jump_speed = -265
 export (int) var gravity = 500
 export (int) var slide_speed = 400
@@ -31,6 +31,7 @@ export (float) var acceleration = 25
 #	DIE
 #}
 
+onready var on_ground = false
 onready var sword_hitbox: Area2D = get_node("AnimatedSprite/Hitbox")
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
@@ -69,7 +70,7 @@ func _ready():
 #	pass
 
 func get_input():
-	print(double_jump)
+	print(jump_count)
 	if is_attacking == false and is_attacking_2 == false and combo == false:
 		attacks = false
 	else:
@@ -94,19 +95,21 @@ func get_input():
 		state_machine.travel("Combo")
 		#yield(get_tree().create_timer(0.1), "timeout")
 		#combo = false
-	if Input.get_action_strength("ui_up") and attacks == false:
-		if is_on_floor():
+	if Input.is_action_just_pressed("ui_up") and attacks == false:
+		if jump_count <= 0:
 			state_machine.travel("Jump")
 			vel.y = jump_speed
+			jump_count += 1
 			
-		elif not is_on_floor() and double_jump == 1:
-			state_machine.travel("Jump")
-			vel.y = jump_speed
-			double_jump = 1
+		#elif not is_on_floor() and jump_count <=2:
+		#	state_machine.travel("Jump")
+		#	vel.y = jump_speed
+		#	jump_count += 1
 			
 			
 	if is_on_floor():
-		double_jump = 1
+		on_ground = true
+		jump_count = 0
 		
 	if Input.is_action_pressed("Pause"):
 		get_tree().change_scene("res://Scenes/Pause.tscn")
