@@ -96,7 +96,7 @@ func get_input():
 		#yield(get_tree().create_timer(0.1), "timeout")
 		#combo = false
 	if Input.is_action_just_pressed("ui_up") and attacks == false:
-		if jump_count <= 0:
+		if jump_count <= 1:
 			state_machine.travel("Jump")
 			vel.y = jump_speed
 			jump_count += 1
