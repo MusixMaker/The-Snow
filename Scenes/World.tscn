@@ -3,7 +3,7 @@
 [ext_resource path="res://Models/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Fireworm.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Evil Wizard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Fire Wizard.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node2D"]
 

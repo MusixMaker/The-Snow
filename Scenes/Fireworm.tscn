@@ -391,14 +391,14 @@ states/Attack/node = SubResource( 54 )
 states/Attack/position = Vector2( 575, 238.62 )
 states/Death/node = SubResource( 55 )
 states/Death/position = Vector2( 475, 76 )
-"states/Get Hit/node" = SubResource( 56 )
-"states/Get Hit/position" = Vector2( 575, -96.38 )
+states/Hurt/node = SubResource( 56 )
+states/Hurt/position = Vector2( 575, -96.38 )
 states/Move/node = SubResource( 58 )
 states/Move/position = Vector2( 742, 120 )
-transitions = [ "Move", "Death", SubResource( 62 ), "Move", "Get Hit", SubResource( 66 ), "Get Hit", "Move", SubResource( 67 ), "Move", "Attack", SubResource( 70 ), "Attack", "Move", SubResource( 75 ) ]
+transitions = [ "Move", "Death", SubResource( 62 ), "Move", "Hurt", SubResource( 66 ), "Hurt", "Move", SubResource( 67 ), "Move", "Attack", SubResource( 70 ), "Attack", "Move", SubResource( 75 ) ]
 start_node = "Move"
 end_node = "Death"
-graph_offset = Vector2( 0, -181.781 )
+graph_offset = Vector2( 0, -124.002 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=73]
 
