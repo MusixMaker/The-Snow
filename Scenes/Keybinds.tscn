@@ -46,3 +46,7 @@ margin_bottom = 475.0
 rect_min_size = Vector2( 50, 25 )
 theme = ExtResource( 2 )
 text = "Save"
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Panel/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="Panel/Save" to="." method="_on_Save_pressed"]

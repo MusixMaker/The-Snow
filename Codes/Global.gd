@@ -1,5 +1,6 @@
 extends Node
 
+export onready var current_noise = 100 
 
 onready var settingsmenu = load("res://Scenes/PauseCanvas.tscn")
 var filepath = "res://keybinds.ini"
@@ -9,9 +10,18 @@ var keybinds = {}
 
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
-		add_child(settingsmenu.instance())
-		get_tree().paused = true
+		if get_tree().paused == false:
+			add_child(settingsmenu.instance())
+			get_tree().paused = true
+		elif get_tree().paused == true:
+			remove_child(settingsmenu.instance())
+			get_tree().paused = false
+			
+		
 
+func _process(delta):
+	#print(current_noise)
+	pass
 func _ready():
 	configfile = ConfigFile.new()
 	if configfile.load(filepath) == OK:

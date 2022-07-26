@@ -70,7 +70,7 @@ func _ready():
 #	pass
 
 func get_input():
-	print(jump_count)
+	#print(jump_count)
 	if is_attacking == false and is_attacking_2 == false and combo == false:
 		attacks = false
 	else:

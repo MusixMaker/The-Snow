@@ -4,14 +4,14 @@ export onready var ap = $AnimationPlayer
 export var muted = false
 export onready var music = $VBoxContainer/HSlider
 export onready var mutey = $"VBoxContainer/Mute Colour/Sound"
-export onready var current_noise
+onready var current_noise = get_node("")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	music.value = 100
+	music.value = current_noise
 	$"VBoxContainer/Mute Colour/Sound".grab_focus()
 
-func _physics_process(delta):
+func _process(delta):
 	if music.value < 10:
 		muted = true
 		ap.play("Muted")

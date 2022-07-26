@@ -1,10 +1,10 @@
-extends Control
+extends CanvasLayer
 
 export onready var ap = $AnimationPlayer
 export var muted = false
-export onready var music = $VBoxContainer/HSlider
+export onready var music = $Background/VBoxContainer/HSlider
 export onready var mutey = $"Background/VBoxContainer/MuteColour/Sound"
-export onready var current_noise
+onready var current_noise = get_node("/root/Global").current_noise
 #var is_paused = false setget set_is_paused
 
 
@@ -18,7 +18,12 @@ export onready var current_noise
 #	get_tree().paused = is_paused
 #	visible = is_paused
 
-func _physics_process(delta):
+func _ready():
+	music.value = current_noise
+	mutey.grab_focus()
+
+func _process(delta):
+	print(current_noise)
 	if music.value < 10:
 		muted = true
 		ap.play("Muted")
@@ -29,7 +34,24 @@ func _physics_process(delta):
 		ap.play("Unmuted")
 		mutey.pressed = true
 
-func _on_CheckButton_pressed():
+func _on_Keys_pressed():
+	pass 
+
+
+func _on_Quit_pressed():
+	print("Quitting...")
+	get_tree().quit()
+
+
+func _on_Restart_pressed():
+	get_tree().change_scene("res://Scenes/World.tscn")
+
+
+func _on_Resume_pressed():
+	get_tree().paused = false
+
+
+func _on_Sound_pressed():
 	if muted == true:
 		muted = false
 		ap.play("Unmuted")
@@ -39,15 +61,3 @@ func _on_CheckButton_pressed():
 		ap.play("Muted")
 		current_noise = music.value
 		music.value = 0
-
-
-func _on_Keys_pressed():
-	pass 
-
-
-func _on_Quit_pressed():
-	get_tree().quit()
-
-
-func _on_Restart_pressed():
-	get_tree().change_scene("res://Scenes/World.tscn")
