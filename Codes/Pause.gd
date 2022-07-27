@@ -1,10 +1,11 @@
 extends CanvasLayer
 
-export onready var ap = $AnimationPlayer
-export var muted = false
-export onready var music = $Background/VBoxContainer/HSlider
-export onready var mutey = $"Background/VBoxContainer/MuteColour/Sound"
-onready var current_noise = get_node("/root/Global").current_noise
+onready var ap = $AnimationPlayer
+var muted = false
+onready var music = $Background/VBoxContainer/HSlider
+onready var mutey = $"Background/VBoxContainer/MuteColour/Sound"
+onready var before_mute
+onready var game = "res://Scenes/World.tscn"
 #var is_paused = false setget set_is_paused
 
 
@@ -19,11 +20,10 @@ onready var current_noise = get_node("/root/Global").current_noise
 #	visible = is_paused
 
 func _ready():
-	music.value = current_noise
+	music.value = Global.current_noise
 	mutey.grab_focus()
 
 func _process(delta):
-	print(current_noise)
 	if music.value < 10:
 		muted = true
 		ap.play("Muted")
@@ -33,6 +33,8 @@ func _process(delta):
 		muted = false
 		ap.play("Unmuted")
 		mutey.pressed = true
+		
+	Global.current_noise = music.value
 
 func _on_Keys_pressed():
 	pass 
@@ -44,20 +46,21 @@ func _on_Quit_pressed():
 
 
 func _on_Restart_pressed():
-	get_tree().change_scene("res://Scenes/World.tscn")
+	get_tree().change_scene(game)
 
 
 func _on_Resume_pressed():
 	get_tree().paused = false
+	queue_free()
 
 
 func _on_Sound_pressed():
 	if muted == true:
 		muted = false
 		ap.play("Unmuted")
-		music.value = current_noise
+		music.value = before_mute
 	elif muted == false:
 		muted = true
 		ap.play("Muted")
-		current_noise = music.value
+		before_mute = music.value
 		music.value = 0

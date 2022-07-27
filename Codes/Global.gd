@@ -3,6 +3,7 @@ extends Node
 export onready var current_noise = 100 
 
 onready var settingsmenu = load("res://Scenes/PauseCanvas.tscn")
+onready var missing = "res://Scenes/File Not Found.tscn"
 var filepath = "res://keybinds.ini"
 var configfile
 
@@ -20,8 +21,8 @@ func _input(event):
 		
 
 func _process(delta):
-	#print(current_noise)
-	pass
+	print("Global - ", current_noise)
+	#pass
 func _ready():
 	configfile = ConfigFile.new()
 	if configfile.load(filepath) == OK:
@@ -32,7 +33,7 @@ func _ready():
 			keybinds[key] = key_value
 	else:
 		print("CONFIG FILE NOT FOUND")
-		get_tree().change_scene("res://Scenes/File Not Found.tscn")
+		get_tree().change_scene(missing)
 		
 	set_game_binds()
 

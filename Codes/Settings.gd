@@ -1,15 +1,16 @@
 extends Control
 
-export onready var ap = $AnimationPlayer
-export var muted = false
-export onready var music = $VBoxContainer/HSlider
-export onready var mutey = $"VBoxContainer/Mute Colour/Sound"
-onready var current_noise = get_node("")
+onready var ap = $AnimationPlayer
+var muted = false
+onready var music = $VBoxContainer/HSlider
+onready var mutey = $"VBoxContainer/Mute Colour/Sound"
+onready var before_mute
+onready var home = "res://Scenes/Title Screen.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	music.value = current_noise
-	$"VBoxContainer/Mute Colour/Sound".grab_focus()
+	music.value = Global.current_noise
+	mutey.grab_focus()
 
 func _process(delta):
 	if music.value < 10:
@@ -21,16 +22,18 @@ func _process(delta):
 		muted = false
 		ap.play("Unmuted")
 		mutey.pressed = true
+		
+	Global.current_noise = music.value
 
 func _on_CheckButton_pressed():
 	if muted == true:
 		muted = false
 		ap.play("Unmuted")
-		music.value = current_noise
+		music.value = before_mute
 	elif muted == false:
 		muted = true
 		ap.play("Muted")
-		current_noise = music.value
+		before_mute = music.value
 		music.value = 0
 
 
@@ -39,7 +42,7 @@ func _on_Keys_pressed():
 
 
 func _on_Back_pressed():
-	get_tree().change_scene("res://Scenes/Title Screen.tscn")
+	get_tree().change_scene(home)
 	
 func _on_Quit_Pressed():
 	get_tree().quit()

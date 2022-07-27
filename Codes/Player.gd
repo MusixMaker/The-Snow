@@ -32,6 +32,7 @@ export (float) var acceleration = 25
 #}
 
 onready var on_ground = false
+onready var pause = "res://Scenes/Pause.tscn"
 onready var sword_hitbox: Area2D = get_node("AnimatedSprite/Hitbox")
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
@@ -112,7 +113,7 @@ func get_input():
 		jump_count = 0
 		
 	if Input.is_action_pressed("Pause"):
-		get_tree().change_scene("res://Scenes/Pause.tscn")
+		get_tree().change_scene(pause)
 	
 
 func _process(delta):
