@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Wii Shop.mp3-8c78ab665e06f2f0a6bc2af231297ddd.mp3str"
+
+[deps]
+
+source_file="res://Music/Wii Shop.mp3"
+dest_files=[ "res://.import/Wii Shop.mp3-8c78ab665e06f2f0a6bc2af231297ddd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

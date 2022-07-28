@@ -6,6 +6,7 @@ onready var music = $Background/VBoxContainer/HSlider
 onready var mutey = $"Background/VBoxContainer/MuteColour/Sound"
 onready var before_mute
 onready var game = "res://Scenes/World.tscn"
+onready var lindB
 #var is_paused = false setget set_is_paused
 
 
@@ -35,6 +36,13 @@ func _process(delta):
 		mutey.pressed = true
 		
 	Global.current_noise = music.value
+	
+	lindB = Global.current_noise/100
+	$AudioStreamPlayer.volume_db = log(lindB) * 20
+	#volume_db = pow(10, (lindB/20))
+	print($AudioStreamPlayer.volume_db)
+	
+
 
 func _on_Keys_pressed():
 	pass 
@@ -47,6 +55,7 @@ func _on_Quit_pressed():
 
 func _on_Restart_pressed():
 	get_tree().change_scene(game)
+	queue_free()
 
 
 func _on_Resume_pressed():
