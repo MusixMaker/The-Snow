@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Thomas the Tank Engine - Original Theme Tune & Opening Sequence.mp3-c2aa7cb0ee6fab1fa78ae8316ed42f37.mp3str"
+
+[deps]
+
+source_file="res://Music/Thomas the Tank Engine - Original Theme Tune & Opening Sequence.mp3"
+dest_files=[ "res://.import/Thomas the Tank Engine - Original Theme Tune & Opening Sequence.mp3-c2aa7cb0ee6fab1fa78ae8316ed42f37.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -9,7 +9,7 @@ onready var home = "res://Scenes/Title Screen.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	music.value = Global.current_noise
+	music.value = 80
 	mutey.grab_focus()
 
 func _process(delta):

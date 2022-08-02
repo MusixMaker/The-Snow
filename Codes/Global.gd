@@ -1,6 +1,6 @@
 extends Node
 
-export onready var current_noise = 80 
+export onready var current_noise = 100 
 
 onready var settingsmenu = load("res://Scenes/Pause.tscn")
 onready var missing = "res://Scenes/File Not Found.tscn"
@@ -11,6 +11,7 @@ var keybinds = {}
 
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
+		var paused = true
 		add_child(settingsmenu.instance())
 		get_tree().paused = true
 

@@ -104,6 +104,10 @@ Pause={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 
+[locale]
+
+locale_filter=[ 1, [ "en_NZ" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true
