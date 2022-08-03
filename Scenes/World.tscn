@@ -30,31 +30,31 @@ drag_margin_bottom = 0.5
 editor_draw_drag_margin = true
 
 [node name="Fireworm" parent="." instance=ExtResource( 3 )]
-position = Vector2( 408, 240 )
+position = Vector2( 410, 270 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="Fireworm2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 67, 243 )
+position = Vector2( 44, 270 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="Evil Wizard" parent="." instance=ExtResource( 5 )]
-position = Vector2( 691, 242 )
+position = Vector2( 692, 257 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="Evil Wizard2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 944, 39 )
+position = Vector2( 994, 50 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="Evil Wizard3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 824, 177 )
+position = Vector2( 824, 193 )
 collision_layer = 7
 collision_mask = 7
 
 [node name="Evil Wizard4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 600, 122 )
+position = Vector2( 600, 160 )
 collision_layer = 7
 collision_mask = 7

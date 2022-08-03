@@ -262,4 +262,5 @@ autoplay = true
 [connection signal="pressed" from="Background/VBoxContainer/MuteColour/Sound" to="." method="_on_Sound_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/Keys" to="." method="_on_Keys_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="Background/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
