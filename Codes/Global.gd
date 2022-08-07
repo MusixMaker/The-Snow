@@ -17,6 +17,7 @@ func _input(event):
 
 func _process(delta):
 	#print("Global - ", current_noise)
+	
 	pass
 func _ready():
 	configfile = ConfigFile.new()

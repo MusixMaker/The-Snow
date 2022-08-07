@@ -45,7 +45,7 @@ func _process(delta):
 	
 
 func _on_Keys_pressed():
-	pass 
+	get_tree().change_scene("res://Scenes/Keybinds.tscn")
 
 
 func _on_Quit_pressed():
