@@ -7,21 +7,26 @@
 pause_mode = 2
 script = ExtResource( 1 )
 
-[node name="Panel" type="Panel" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 0.482353 )
+
+[node name="Panel" type="Panel" parent="ColorRect"]
 margin_left = 395.0
 margin_top = 114.0
 margin_right = 895.0
 margin_bottom = 614.0
 rect_min_size = Vector2( 500, 500 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Panel"]
 margin_right = 500.0
 margin_bottom = 400.0
 rect_min_size = Vector2( 500, 400 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Back" type="Button" parent="Panel"]
+[node name="Back" type="Button" parent="ColorRect/Panel"]
 margin_left = 75.0
 margin_top = 450.0
 margin_right = 125.0
@@ -30,7 +35,7 @@ rect_min_size = Vector2( 50, 25 )
 theme = ExtResource( 2 )
 text = "Back"
 
-[node name="Reset" type="Button" parent="Panel"]
+[node name="Reset" type="Button" parent="ColorRect/Panel"]
 margin_left = 192.5
 margin_top = 450.0
 margin_right = 312.5
@@ -39,7 +44,7 @@ rect_min_size = Vector2( 120, 25 )
 theme = ExtResource( 2 )
 text = "Reset to Default"
 
-[node name="Save" type="Button" parent="Panel"]
+[node name="Save" type="Button" parent="ColorRect/Panel"]
 margin_left = 380.0
 margin_top = 450.0
 margin_right = 430.0
@@ -48,6 +53,6 @@ rect_min_size = Vector2( 50, 25 )
 theme = ExtResource( 2 )
 text = "Save"
 
-[connection signal="pressed" from="Panel/Back" to="." method="_on_Back_pressed"]
-[connection signal="pressed" from="Panel/Reset" to="." method="_on_Reset_pressed"]
-[connection signal="pressed" from="Panel/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="ColorRect/Panel/Save" to="." method="_on_Save_pressed"]

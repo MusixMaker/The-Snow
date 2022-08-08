@@ -3,7 +3,6 @@ extends Button
 var key
 var value
 var menu
-
 var waiting_input = false
 
 func _input(event):

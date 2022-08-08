@@ -14,9 +14,11 @@ func _process(delta):
 	lindB = noise_level/100
 	volume_db = log(lindB) * 20
 	#volume_db = pow(10, (lindB/20))
-	print(volume_db)
+	#print(volume_db)
 	
 	if get_tree().get_current_scene().get_name() == "Title Screen":
 		ap.play("Title")
 	elif get_tree().get_current_scene().get_name() == "World":
 		ap.play("Game")
+	else:
+		pass

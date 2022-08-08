@@ -1,7 +1,10 @@
 extends CanvasLayer
 
-onready var buttoncontainer = get_node("Panel/VBoxContainer")
+onready var buttoncontainer = get_node("ColorRect/Panel/VBoxContainer")
 onready var buttonscript = load("res://Codes/KiBaatain.gd")
+onready var settings = "res://Scenes/Settings.tscn"
+onready var pause = "res://Scenes/Pause.tscn"
+
 
 var keybinds 
 var buttons = {}
@@ -45,12 +48,19 @@ func change_bind(key, value):
 			buttons[key].text = "Unassigned"
 
 func _on_Back_pressed():
-	queue_free()
+	if Global.paused == null:
+		get_tree().change_scene(settings)
+	elif Global.paused != null:
+		queue_free()
 
 
 func _on_Reset_pressed():
-	pass # Replace with function body.
+	pass
+	#Global.keybinds = keybinds_default
 
 
 func _on_Save_pressed():
-	pass # Replace with function body.
+	Global.keybinds = keybinds.duplicate()
+	Global.set_game_binds()
+	Global.write_config()
+	_on_Back_pressed()

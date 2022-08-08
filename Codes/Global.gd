@@ -6,19 +6,23 @@ onready var settingsmenu = load("res://Scenes/Pause.tscn")
 onready var missing = "res://Scenes/File Not Found.tscn"
 var filepath = "res://keybinds.ini"
 var configfile
+var paused
 
 var keybinds = {}
 
 func _input(event):
 	if Input.is_key_pressed(KEY_ESCAPE):
-		var paused = true
+		paused = true
 		add_child(settingsmenu.instance())
 		get_tree().paused = true
 
 func _process(delta):
+	var scene = get_tree().get_current_scene().get_name() 
+	print(scene)
 	#print("Global - ", current_noise)
-	
+	#print(paused)
 	pass
+
 func _ready():
 	configfile = ConfigFile.new()
 	if configfile.load(filepath) == OK:
@@ -40,7 +44,13 @@ func set_game_binds():
 		var actionlist = InputMap.get_action_list(key)
 		if !actionlist.empty():
 			InputMap.action_erase_event(key, actionlist[0])
-			
-		var new_key = InputEventKey.new()
-		new_key.set_scancode(value)
-		InputMap.action_add_event(key, new_key)
+		if value != null:
+			var new_key = InputEventKey.new()
+			new_key.set_scancode(value)
+			InputMap.action_add_event(key, new_key)
+
+func write_config():
+	for key in keybinds.keys():
+		var key_value = keybinds[key]
+		configfile.set_value("keybinds", key, key_value)
+	configfile.save(filepath)

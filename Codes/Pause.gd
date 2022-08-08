@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var ap = $AnimationPlayer
 var muted = false
+onready var keys = load("res://Scenes/Keybinds.tscn")
 onready var music = $Background/VBoxContainer/HSlider
 onready var mutey = $"Background/VBoxContainer/MuteColour/Sound"
 onready var before_mute
@@ -40,12 +41,14 @@ func _process(delta):
 	lindB = Global.current_noise/100
 	$AudioStreamPlayer.volume_db = log(lindB) * 20
 	#volume_db = pow(10, (lindB/20))
-	print($AudioStreamPlayer.volume_db)
-	
-	
+	#print($AudioStreamPlayer.volume_db)
+	#print(get_tree().get_current_scene().get_scene_name())
+	#print(Global.paused)
+	var scene = get_tree().get_current_scene().get_name() 
+	print(scene)
 
 func _on_Keys_pressed():
-	get_tree().change_scene("res://Scenes/Keybinds.tscn")
+	add_child(keys.instance())
 
 
 func _on_Quit_pressed():
