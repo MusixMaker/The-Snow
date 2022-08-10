@@ -47,6 +47,7 @@ func change_bind(key, value):
 			buttons[k].value = null
 			buttons[key].text = "Unassigned"
 
+
 func _on_Back_pressed():
 	if Global.paused == null:
 		get_tree().change_scene(settings)

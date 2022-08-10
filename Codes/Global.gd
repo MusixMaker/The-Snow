@@ -5,9 +5,11 @@ export onready var current_noise = 100
 onready var settingsmenu = load("res://Scenes/Pause.tscn")
 onready var missing = "res://Scenes/File Not Found.tscn"
 var filepath = "res://keybinds.ini"
+var default = "res://keybinds_default.ini"
 var configfile
 var paused
 
+var default_keybinds = {}
 var keybinds = {}
 
 func _input(event):
@@ -34,7 +36,7 @@ func _ready():
 	else:
 		print("CONFIG FILE NOT FOUND")
 		get_tree().change_scene(missing)
-		
+	
 	set_game_binds()
 
 func set_game_binds():
@@ -52,5 +54,6 @@ func set_game_binds():
 func write_config():
 	for key in keybinds.keys():
 		var key_value = keybinds[key]
-		configfile.set_value("keybinds", key, key_value)
+		if key_value != null:
+			configfile.set_value("keybinds", key, key_value)
 	configfile.save(filepath)

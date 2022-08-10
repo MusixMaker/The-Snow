@@ -21,6 +21,7 @@ func _input(event):
 			pressed = false
 			waiting_input = false
 
+#Lets pressed button change Keybind
 func _toggled(button_pressed):
 	if button_pressed:
 		waiting_input = true
