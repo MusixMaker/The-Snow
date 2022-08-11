@@ -13,9 +13,9 @@ margin_bottom = 720.0
 color = Color( 0, 0, 0, 0.482353 )
 
 [node name="Panel" type="Panel" parent="ColorRect"]
-margin_left = 395.0
+margin_left = 390.0
 margin_top = 114.0
-margin_right = 895.0
+margin_right = 890.0
 margin_bottom = 614.0
 rect_min_size = Vector2( 500, 500 )
 

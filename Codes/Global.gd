@@ -19,8 +19,8 @@ func _input(event):
 		get_tree().paused = true
 
 func _process(delta):
-	var scene = get_tree().get_current_scene().get_name() 
-	print(scene)
+	#var scene = get_tree().get_current_scene().get_name() 
+	#print(scene)
 	#print("Global - ", current_noise)
 	#print(paused)
 	pass

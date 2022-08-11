@@ -4,8 +4,9 @@ onready var buttoncontainer = get_node("ColorRect/Panel/VBoxContainer")
 onready var buttonscript = load("res://Codes/KiBaatain.gd")
 onready var settings = "res://Scenes/Settings.tscn"
 onready var pause = "res://Scenes/Pause.tscn"
+onready var unassigned = load("res://Scenes/Unassigned Input.tscn")
 
-
+var save_key
 var keybinds 
 var buttons = {}
 
@@ -42,10 +43,14 @@ func _ready():
 func change_bind(key, value):
 	keybinds[key] = value
 	for k in keybinds.keys():
+		#print("running check on ",k," - ", key," -- ", k == key)
 		if k != key and value != null and keybinds[k] == value:
+			#print("checking if ", k,"=", key ,": ",k == key)
 			keybinds[k] = null
 			buttons[k].value = null
-			buttons[key].text = "Unassigned"
+			buttons[k].text = "Unassigned"
+			buttons[k].value = save_key
+			print(save_key)
 
 
 func _on_Back_pressed():
@@ -61,7 +66,11 @@ func _on_Reset_pressed():
 
 
 func _on_Save_pressed():
-	Global.keybinds = keybinds.duplicate()
-	Global.set_game_binds()
-	Global.write_config()
-	_on_Back_pressed()
+	if save_key == null:
+		print("Unable to save")
+		add_child(unassigned.instance())
+	else:
+		Global.keybinds = keybinds.duplicate()
+		Global.set_game_binds()
+		Global.write_config()
+		_on_Back_pressed()
