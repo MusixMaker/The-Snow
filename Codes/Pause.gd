@@ -16,11 +16,6 @@ onready var lindB
 #		self.is_paused = !is_paused
 #		
 
-#func set_is_paused(value):
-#	is_paused = value
-#	get_tree().paused = is_paused
-#	visible = is_paused
-
 func _ready():
 	music.value = Global.current_noise
 	mutey.grab_focus()
@@ -44,8 +39,8 @@ func _process(delta):
 	#print($AudioStreamPlayer.volume_db)
 	#print(get_tree().get_current_scene().get_scene_name())
 	#print(Global.paused)
-	var scene = get_tree().get_current_scene().get_name() 
-	print(scene)
+	#var scene = get_tree().get_current_scene().get_name() 
+	#print(scene)
 
 func _on_Keys_pressed():
 	add_child(keys.instance())

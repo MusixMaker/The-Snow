@@ -40,17 +40,26 @@ func _ready():
 		buttons[key] = button
 		
 
+func _process(delta):
+	#print(save_key)
+	pass
+
 func change_bind(key, value):
+	#print(5)
 	keybinds[key] = value
 	for k in keybinds.keys():
+		print(value)
 		#print("running check on ",k," - ", key," -- ", k == key)
 		if k != key and value != null and keybinds[k] == value:
 			#print("checking if ", k,"=", key ,": ",k == key)
 			keybinds[k] = null
+			
 			buttons[k].value = null
 			buttons[k].text = "Unassigned"
-			buttons[k].value = save_key
-			print(save_key)
+			#buttons[key].value = save_key
+			save_key = keybinds[k]
+			#print(save_key)
+			#print(key, value)
 
 
 func _on_Back_pressed():

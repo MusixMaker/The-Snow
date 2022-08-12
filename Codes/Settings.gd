@@ -4,12 +4,16 @@ onready var ap = $AnimationPlayer
 var muted = false
 onready var music = $VBoxContainer/HSlider
 onready var mutey = $"VBoxContainer/Mute Colour/Sound"
+#onready var backgroundmusic = "res://Scenes/Background Music.tscn"
+#onready var animplay = backgroundmusic.ap
+onready var current_dB
 onready var before_mute
 onready var home = "res://Scenes/Title Screen.tscn"
+var lindB
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	music.value = 80
+	music.value = Global.current_noise
 	mutey.grab_focus()
 
 func _process(delta):
@@ -24,6 +28,9 @@ func _process(delta):
 		mutey.pressed = true
 		
 	Global.current_noise = music.value
+	
+	lindB = Global.current_noise/100
+	current_dB = log(lindB) * 20
 
 func _on_CheckButton_pressed():
 	if muted == true:

@@ -9,7 +9,6 @@ var default = "res://keybinds_default.ini"
 var configfile
 var paused
 
-var default_keybinds = {}
 var keybinds = {}
 
 func _input(event):
