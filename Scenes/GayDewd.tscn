@@ -388,7 +388,6 @@ animation = "Run"
 frame = 2
 
 [node name="Run Hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.5, 2.5 )
 shape = SubResource( 36 )
 disabled = true
@@ -402,6 +401,5 @@ anims/Run = SubResource( 40 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
 [node name="Attack-1 Hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -5, 5.25 )
 shape = SubResource( 41 )

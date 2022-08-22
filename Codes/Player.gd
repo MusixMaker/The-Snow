@@ -166,5 +166,5 @@ func _on_Hitbox_body_entered(body):
 	#print(body.name)
 	if body.is_in_group("Enemies"):
 		body.deal_damage()
-	if body.is_in_group("Worm"):
-		body.deal_damage()
+	#if body.is_in_group("Worm"):
+	#	body.deal_damage()
