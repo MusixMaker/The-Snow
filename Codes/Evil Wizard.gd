@@ -64,3 +64,8 @@ func deal_damage():
 		hit = true
 		yield(get_tree().create_timer(0.4), "timeout")
 		hit = false
+
+
+func _on_HitArea_body_entered(body):
+	if body.is_in_group("Player"):
+		state_machine.travel("Attack")
