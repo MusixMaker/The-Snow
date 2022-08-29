@@ -199,7 +199,7 @@ tracks/1/keys = {
 "values": [ "Attack" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -240,7 +240,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -281,7 +281,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -323,7 +323,7 @@ tracks/1/keys = {
 "values": [ "Idle" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -365,7 +365,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 3, 4, 5, 6, 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -404,7 +404,7 @@ tracks/1/keys = {
 "values": [ "Idle" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DamageArea:disabled")
+tracks/2/path = NodePath("Area2D/DamageArea:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -458,11 +458,11 @@ graph_offset = Vector2( -24, -75.6827 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=83]
 
-[sub_resource type="RectangleShape2D" id=90]
-extents = Vector2( 27.5, 18 )
-
 [sub_resource type="RectangleShape2D" id=89]
 extents = Vector2( 52, 25.5 )
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 27.5, 18 )
 
 [node name="Evil Wizard" type="KinematicBody2D" groups=["Enemies"]]
 script = ExtResource( 3 )
@@ -495,14 +495,16 @@ position = Vector2( 16, 24 )
 enabled = true
 cast_to = Vector2( 0, 3 )
 
-[node name="DamageArea" type="CollisionShape2D" parent="."]
-position = Vector2( 36.5, 1 )
-shape = SubResource( 90 )
-
 [node name="HitArea" type="Area2D" parent="."]
 
 [node name="HitArea" type="CollisionShape2D" parent="HitArea"]
 position = Vector2( 35, 0.5 )
 shape = SubResource( 89 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="DamageArea" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 36.5, 1 )
+shape = SubResource( 90 )
 
 [connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]

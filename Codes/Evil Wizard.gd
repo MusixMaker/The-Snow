@@ -49,9 +49,13 @@ func _physics_process(delta):
 		if is_on_wall():
 			dir = dir * -1
 			$RayCast2D.position.x *= -1
+			$HitArea/HitArea.position.x *= -1
+			$Area2D/DamageArea.position.x *= -1
 		if $RayCast2D.is_colliding() == false:
 			dir = dir * -1
 			$RayCast2D.position.x *= -1
+			$HitArea/HitArea.position.x *= -1
+			$Area2D/DamageArea.position.x *= -1
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 
