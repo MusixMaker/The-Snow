@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var hp: int = 10
+export (int) var hp: int = 1
 export (int) var speed = 200
 export (int) var jump_count = 0
 export (int) var jump_speed = -265
@@ -71,6 +71,7 @@ func _ready():
 #	pass
 
 func get_input():
+	print(hp)
 	#print(jump_count)
 	if is_attacking == false and is_attacking_2 == false and combo == false:
 		attacks = false
@@ -119,9 +120,14 @@ func get_input():
 func _process(delta):
 	#print(state_machine.get_current_node())
 	#print(is_attacking)
+	if hp <= 0:
+		state_machine.travel("Dead")
+		vel.x = 0
+		print("dead")
+		dead = true
 	if dead == false:
 		get_input()
-	if vel == Vector2.ZERO:
+	if vel == Vector2.ZERO and dead == false:
 		state_machine.travel("Idle")
 	elif vel.x != 0:
 		state_machine.travel("Run")
@@ -148,6 +154,7 @@ func _process(delta):
 	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
 	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
 	$AnimationTree["parameters/conditions/Combo"] = combo
+	$AnimationTree["parameters/conditions/dead"] = dead
 
 
 func take_damage():
@@ -155,11 +162,6 @@ func take_damage():
 	hp -= dam
 	if hp >= 1:
 		state_machine.travel("Hurt")
-	elif hp <=0:
-		print("dead")
-		dead = true
-		state_machine.travel("Dead")
-		queue_free()
 
 
 func _on_Hitbox_body_entered(body):

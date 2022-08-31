@@ -41,6 +41,3 @@ collision_mask = 7
 
 [node name="Evil Wizard26" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1020, 259 )
-
-[node name="Evil Wizard25" parent="." instance=ExtResource( 5 )]
-position = Vector2( 982, 260 )

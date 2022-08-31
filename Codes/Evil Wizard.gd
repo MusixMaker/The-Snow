@@ -73,3 +73,13 @@ func deal_damage():
 func _on_HitArea_body_entered(body):
 	if body.is_in_group("Player"):
 		state_machine.travel("Attack")
+
+
+func _on_HitArea_body_exited(body):
+	if body.is_in_group("Player"):
+		state_machine.travel("Move")
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Player"):
+		body.take_damage()
