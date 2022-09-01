@@ -883,7 +883,6 @@ advance_condition = "NotIsJumping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=83]
 switch_mode = 2
-advance_condition = "Dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=84]
 advance_condition = "IsDead"
@@ -928,7 +927,7 @@ states/Run/position = Vector2( 482.396, 110.524 )
 transitions = [ "Idle", "Run", SubResource( 68 ), "Run", "Idle", SubResource( 69 ), "Idle", "Attack", SubResource( 70 ), "Run", "Attack", SubResource( 71 ), "Attack", "Idle", SubResource( 73 ), "Idle", "Attack 2", SubResource( 74 ), "Run", "Attack 2", SubResource( 75 ), "Attack 2", "Idle", SubResource( 77 ), "Idle", "Jump", SubResource( 78 ), "Run", "Jump", SubResource( 79 ), "Fall", "Idle", SubResource( 80 ), "Jump", "Fall", SubResource( 82 ), "Idle", "Death", SubResource( 83 ), "Run", "Death", SubResource( 84 ), "Idle", "Hurt", SubResource( 88 ), "Run", "Hurt", SubResource( 89 ), "Hurt", "Idle", SubResource( 91 ), "Idle", "Combo", SubResource( 101 ), "Run", "Combo", SubResource( 102 ), "Combo", "Idle", SubResource( 103 ) ]
 start_node = "Idle"
 end_node = "Death"
-graph_offset = Vector2( -525.604, -47.96 )
+graph_offset = Vector2( -525.604, -77.2682 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=86]
 
@@ -972,7 +971,6 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 86 )
 parameters/conditions/Combo = false
-parameters/conditions/Dead = false
 parameters/conditions/IsAttacking = false
 parameters/conditions/IsAttacking2 = false
 parameters/conditions/IsDead = false

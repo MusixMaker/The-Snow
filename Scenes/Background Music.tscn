@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Music/Wii Music.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Codes/Music.gd" type="Script" id=2]
 [ext_resource path="res://Music/Thomas the Tank Engine - Original Theme Tune & Opening Sequence.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Music/Mii channel theme but each pause descends you further to paranoia.mp3" type="AudioStream" id=4]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Game"
-length = 75.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:stream")
 tracks/0/interp = 1
@@ -20,7 +19,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:autoplay")
+tracks/1/path = NodePath(".:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -32,7 +31,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:playing")
+tracks/2/path = NodePath(".:autoplay")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -44,10 +43,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Null"
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:stream")
@@ -59,10 +55,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ ExtResource( 1 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:autoplay")
+tracks/1/path = NodePath(".:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -71,10 +67,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:playing")
+tracks/2/path = NodePath(".:autoplay")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -86,7 +82,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 resource_name = "Title"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:stream")
@@ -98,10 +94,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 1 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:autoplay")
+tracks/1/path = NodePath(".:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -113,7 +109,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath(".:playing")
+tracks/2/path = NodePath(".:autoplay")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -126,12 +122,11 @@ tracks/2/keys = {
 }
 
 [node name="Music" type="AudioStreamPlayer"]
-stream = ExtResource( 1 )
+stream = ExtResource( 4 )
 autoplay = true
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Game = SubResource( 2 )
-anims/Null = SubResource( 4 )
-anims/RESET = SubResource( 3 )
-anims/Title = SubResource( 1 )
+anims/Game = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Title = SubResource( 3 )

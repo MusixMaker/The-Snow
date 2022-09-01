@@ -118,19 +118,24 @@ func get_input():
 	
 
 func _process(delta):
+	print(dead)
+		
 	#print(state_machine.get_current_node())
 	#print(is_attacking)
 	if hp <= 0:
-		state_machine.travel("Dead")
+			#state_machine.travel("Dead")
 		vel.x = 0
 		print("dead")
 		dead = true
-	if dead == false:
-		get_input()
+		yield(get_tree().create_timer(5), "timeout")
+
+	get_input()
 	if vel == Vector2.ZERO and dead == false:
 		state_machine.travel("Idle")
 	elif vel.x != 0:
 		state_machine.travel("Run")
+	elif dead == true:
+		state_machine.travel("Dead")
 	
 	if not is_on_floor():
 		if vel.y < 0:
@@ -154,7 +159,7 @@ func _process(delta):
 	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
 	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
 	$AnimationTree["parameters/conditions/Combo"] = combo
-	$AnimationTree["parameters/conditions/dead"] = dead
+	#$AnimationTree["parameters/conditions/dead"] = dead
 
 
 func take_damage():
