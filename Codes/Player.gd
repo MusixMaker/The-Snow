@@ -71,7 +71,7 @@ func _ready():
 #	pass
 
 func get_input():
-	print(hp)
+	#print(hp)
 	#print(jump_count)
 	if is_attacking == false and is_attacking_2 == false and combo == false:
 		attacks = false
@@ -118,43 +118,49 @@ func get_input():
 	
 
 func _process(delta):
-	print(dead)
+	print(vel.y)
 		
 	#print(state_machine.get_current_node())
 	#print(is_attacking)
-	if hp <= 0:
-			#state_machine.travel("Dead")
-		vel.x = 0
-		print("dead")
-		dead = true
-		yield(get_tree().create_timer(5), "timeout")
+	#if hp < 1:
+	#	if dead == false:
+	#		vel.x = 0
+	#		dead = true
+	#		print(dead)
+	#		state_machine.travel("Death")
+	#	else:
+	#		pass
 
-	get_input()
-	if vel == Vector2.ZERO and dead == false:
-		state_machine.travel("Idle")
-	elif vel.x != 0:
-		state_machine.travel("Run")
-	elif dead == true:
-		state_machine.travel("Dead")
+
+	if dead == false:
+		get_input()
+		if vel == Vector2.ZERO and hp > 0 :
+			state_machine.travel("Idle")
+		elif vel.x != 0 and hp > 0:
+			state_machine.travel("Run")
 	
-	if not is_on_floor():
-		if vel.y < 0:
-			state_machine.travel("Jump")
-		if vel.y > 0:
-			state_machine.travel("Fall")
+		if not is_on_floor():
+			if vel.y < 0:
+				state_machine.travel("Jump")
+			if vel.y > 0:
+				state_machine.travel("Fall")
 			
 	#handle_state(state)
-	if vel.x < 0:
-		$AnimatedSprite.flip_h = true
-		$AnimatedSprite/Hitbox/HitArea.position.x = -direction
-	if vel.x > 0:
-		$AnimatedSprite.flip_h = false
-		$AnimatedSprite/Hitbox/HitArea.position.x = direction
+		if vel.x < 0:
+			$AnimatedSprite.flip_h = true
+			$AnimatedSprite/Hitbox/HitArea.position.x = -direction
+		if vel.x > 0:
+			$AnimatedSprite.flip_h = false
+			$AnimatedSprite/Hitbox/HitArea.position.x = direction
 	
-	vel.y += gravity*delta
+		vel.y += gravity*delta
+		if vel.y >= 500:
+			vel.y = 500
 	#if is_attacking == true:
 	#	vel.x = 0
-	vel = move_and_slide(vel, Vector2.UP)
+		vel = move_and_slide(vel, Vector2.UP)
+	else:
+		vel.y += gravity*delta
 	
 	$AnimationTree["parameters/conditions/IsAttacking"] = is_attacking
 	$AnimationTree["parameters/conditions/IsAttacking2"] = is_attacking_2
@@ -167,6 +173,10 @@ func take_damage():
 	hp -= dam
 	if hp >= 1:
 		state_machine.travel("Hurt")
+	else:
+		dead = true
+		print(dead)
+		state_machine.travel("Death")
 
 
 func _on_Hitbox_body_entered(body):
