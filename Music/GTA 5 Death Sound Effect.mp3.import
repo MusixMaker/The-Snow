@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/GTA 5 Death Sound Effect.mp3-787a3f543ab36095eccb20934c1b1102.mp3str"
+
+[deps]
+
+source_file="res://Music/GTA 5 Death Sound Effect.mp3"
+dest_files=[ "res://.import/GTA 5 Death Sound Effect.mp3-787a3f543ab36095eccb20934c1b1102.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

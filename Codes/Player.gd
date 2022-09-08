@@ -33,13 +33,14 @@ export (float) var acceleration = 25
 
 onready var on_ground = false
 onready var pause = "res://Scenes/Pause.tscn"
+onready var music = "res://Codes/Music.gd"
 onready var sword_hitbox: Area2D = get_node("AnimatedSprite/Hitbox")
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var ap = $AnimationPlayer
 onready var player = get_node("AnimationPlayer")
 onready var dam = 1
-onready var dead = false
+export onready var dead = false
 
 func _ready():
 	state_machine.start("Idle")
@@ -118,7 +119,7 @@ func get_input():
 	
 
 func _process(delta):
-	print(vel.y)
+	#print(music.noise_level)
 		
 	#print(state_machine.get_current_node())
 	#print(is_attacking)
@@ -177,6 +178,9 @@ func take_damage():
 		dead = true
 		print(dead)
 		state_machine.travel("Death")
+		music.died()
+		yield(get_tree().create_timer(5), "timeout")
+		get_tree().change_scene("res://Scenes/World.tscn")
 
 
 func _on_Hitbox_body_entered(body):
