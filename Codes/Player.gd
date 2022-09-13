@@ -42,6 +42,8 @@ onready var player = get_node("AnimationPlayer")
 onready var dam = 1
 export onready var dead = false
 
+var instance = music.instance()
+
 func _ready():
 	state_machine.start("Idle")
 	pass # Replace with function body.

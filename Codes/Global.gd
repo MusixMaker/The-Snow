@@ -8,6 +8,7 @@ var filepath = "res://keybinds.ini"
 var default = "res://keybinds_default.ini"
 var configfile
 var paused
+onready var player = "res://Codes/Player.gd"
 
 var keybinds = {}
 
@@ -37,6 +38,7 @@ func _ready():
 		get_tree().change_scene(missing)
 	
 	set_game_binds()
+	#print(player.hp)
 
 func set_game_binds():
 	for key in keybinds.keys():
