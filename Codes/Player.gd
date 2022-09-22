@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var hp: int = 1
+export (int) var hp: int = 5
 export (int) var speed = 200
 export (int) var jump_count = 0
 export (int) var jump_speed = -265
@@ -42,7 +42,7 @@ onready var player = get_node("AnimationPlayer")
 onready var dam = 1
 export onready var dead = false
 
-var instance = music.instance()
+#var instance = music.instance()
 
 func _ready():
 	state_machine.start("Idle")
@@ -121,6 +121,7 @@ func get_input():
 	
 
 func _process(delta):
+	print(hp)
 	#print(music.noise_level)
 		
 	#print(state_machine.get_current_node())
@@ -172,22 +173,27 @@ func _process(delta):
 
 
 func take_damage():
-	print("ow")
+	#print("ow")
 	hp -= dam
 	if hp >= 1:
 		state_machine.travel("Hurt")
 	else:
 		dead = true
+		Global.player_dead = true
 		print(dead)
 		state_machine.travel("Death")
-		music.died()
-		yield(get_tree().create_timer(5), "timeout")
+#		music.died()
+		yield(get_tree().create_timer(4), "timeout")
+		Global.player_dead = false
 		get_tree().change_scene("res://Scenes/World.tscn")
 
+#func deal_damage():
+#	print("stop hitting yourself")
 
 func _on_Hitbox_body_entered(body):
 	#print(body.name)
 	if body.is_in_group("Enemies"):
+		print("damage dealt")
 		body.deal_damage()
 	#if body.is_in_group("Worm"):
 	#	body.deal_damage()

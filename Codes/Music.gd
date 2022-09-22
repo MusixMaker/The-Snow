@@ -13,8 +13,11 @@ func _ready():
 	
 func _process(delta):
 	#print(player.dead)
-	lindB = noise_level/100
-	volume_db = log(lindB) * 20
+	if Global.player_dead == false:
+		lindB = noise_level/100
+		volume_db = log(lindB) * 20
+	else:
+		volume_db = -80
 	#volume_db = pow(10, (lindB/20))
 	#print(volume_db)
 	

@@ -8,6 +8,7 @@ var filepath = "res://keybinds.ini"
 var default = "res://keybinds_default.ini"
 var configfile
 var paused
+var player_dead = false
 onready var player = "res://Codes/Player.gd"
 
 var keybinds = {}
@@ -21,7 +22,7 @@ func _input(event):
 func _process(delta):
 	#var scene = get_tree().get_current_scene().get_name() 
 	#print(scene)
-	#print("Global - ", current_noise)
+	print("Global - ", player_dead)
 	#print(paused)
 	pass
 

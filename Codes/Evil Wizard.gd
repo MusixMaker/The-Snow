@@ -34,6 +34,7 @@ func dead():
 	collision.queue_free()
 	
 func _physics_process(delta):
+	#print(hp)
 	if is_dead == false and hit == false:
 		vel.x = SPEED * dir
 		
@@ -48,11 +49,13 @@ func _physics_process(delta):
 
 		if is_on_wall():
 			dir = dir * -1
+			$Turnaround/CollisionShape2D.position.x *= -1
 			$RayCast2D.position.x *= -1
 			$HitArea/HitArea.position.x *= -1
 			$Area2D/DamageArea.position.x *= -1
 		if $RayCast2D.is_colliding() == false:
 			dir = dir * -1
+			$Turnaround/CollisionShape2D.position.x *= -1
 			$RayCast2D.position.x *= -1
 			$HitArea/HitArea.position.x *= -1
 			$Area2D/DamageArea.position.x *= -1
@@ -83,3 +86,12 @@ func _on_HitArea_body_exited(body):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage()
+
+
+func _on_Turnaround_body_entered(body):
+	if body.is_in_group("Player"):
+		dir = dir * -1
+		$Turnaround/CollisionShape2D.position.x *= -1
+		$RayCast2D.position.x *= -1
+		$HitArea/HitArea.position.x *= -1
+		$Area2D/DamageArea.position.x *= -1
