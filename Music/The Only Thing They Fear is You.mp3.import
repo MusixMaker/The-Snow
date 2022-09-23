@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Only Thing They Fear is You.mp3-f048e6a05d1ad5989a489ecda99a1c9a.mp3str"
+
+[deps]
+
+source_file="res://Music/The Only Thing They Fear is You.mp3"
+dest_files=[ "res://.import/The Only Thing They Fear is You.mp3-f048e6a05d1ad5989a489ecda99a1c9a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

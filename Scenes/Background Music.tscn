@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Music/GTA 5 Death Sound Effect.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Codes/Music.gd" type="Script" id=2]
-[ext_resource path="res://Music/Thomas the Tank Engine - Original Theme Tune & Opening Sequence.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Music/The Only Thing They Fear is You.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Music/Mii channel theme but each pause descends you further to paranoia.mp3" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=4]
@@ -47,7 +47,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=1]
 resource_name = "Game"
-length = 75.0
+length = 500.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:stream")
 tracks/0/interp = 1
