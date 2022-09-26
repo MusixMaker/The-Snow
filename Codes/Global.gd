@@ -22,7 +22,7 @@ func _input(event):
 func _process(delta):
 	#var scene = get_tree().get_current_scene().get_name() 
 	#print(scene)
-	print("Global - ", player_dead)
+	#print("Global - ", player_dead)
 	#print(paused)
 	pass
 

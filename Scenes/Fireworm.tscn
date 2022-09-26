@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Models/Fireworm/Worm/Walk.png" type="Texture" id=1]
 [ext_resource path="res://Models/Fireworm/Worm/Get Hit.png" type="Texture" id=2]
@@ -408,12 +408,16 @@ extents = Vector2( 14.5, 14.5 )
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 26.5, 6.5 )
 
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 309.5, 32.5 )
+
 [node name="Fireworm" type="KinematicBody2D" groups=["Enemies"]]
 script = ExtResource( 6 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 46 )
 animation = "Move"
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite")
@@ -444,3 +448,11 @@ shape = SubResource( 47 )
 [node name="Bottom" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, 6.5 )
 shape = SubResource( 74 )
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="Detection shape" type="CollisionShape2D" parent="Detection"]
+position = Vector2( 304.5, -0.5 )
+shape = SubResource( 76 )
+
+[connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]

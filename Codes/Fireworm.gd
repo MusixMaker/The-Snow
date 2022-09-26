@@ -14,6 +14,7 @@ export (int) var hp: int = 5
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var collision = $Top
+onready var Fireball = preload("res://Scenes/Fireball.tscn")
 
 const GRAVITY = 7.75
 const SPEED = 75
@@ -35,7 +36,6 @@ func dead():
 	$Bottom.queue_free()
 
 func _physics_process(delta):
-
 	if is_dead == false and hit == false:
 		vel.x = SPEED * dir
 		
@@ -60,7 +60,8 @@ func _physics_process(delta):
 			$Bottom.position.x *= -1
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
-
+		
+		
 func deal_damage():
 	hp -= dam
 	if hp < 1:
@@ -70,3 +71,12 @@ func deal_damage():
 		hit = true
 		yield(get_tree().create_timer(0.3), "timeout")
 		hit = false
+
+
+func _on_Detection_body_entered(body):
+	if body.is_in_group("Player"):
+		print("I see you!")
+		Fireball.launch()
+#		var bullet = Fireball.instance()
+#		get_node("res://Scenes/World.tscn").add_child(bullet)
+#		bullet.global_position = $Position2D.global_position
