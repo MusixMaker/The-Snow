@@ -36,6 +36,7 @@ func dead():
 	$Bottom.queue_free()
 
 func _physics_process(delta):
+	Global.fireworm_dir = dir
 	if is_dead == false and hit == false:
 		vel.x = SPEED * dir
 		
@@ -53,11 +54,13 @@ func _physics_process(delta):
 			$RayCast2D.position.x *= -1
 			$Top.position.x *= -1
 			$Bottom.position.x *= -1
+			$"Detection/Detection shape".position.x *= -1
 		if $RayCast2D.is_colliding() == false:
 			dir = dir * -1
 			$RayCast2D.position.x *= -1
 			$Top.position.x *= -1
 			$Bottom.position.x *= -1
+			$"Detection/Detection shape".position.x *= -1
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 		
@@ -76,7 +79,8 @@ func deal_damage():
 func _on_Detection_body_entered(body):
 	if body.is_in_group("Player"):
 		print("I see you!")
-		Fireball.launch()
-#		var bullet = Fireball.instance()
-#		get_node("res://Scenes/World.tscn").add_child(bullet)
-#		bullet.global_position = $Position2D.global_position
+		#Fireball.launch()
+		var bullet = Fireball.instance()
+		#get_tree().get_node("res://Scenes/World.tscn").add_child(bullet)
+		get_parent().add_child(bullet)
+		bullet.global_position = self.global_position

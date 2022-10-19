@@ -121,7 +121,7 @@ func get_input():
 	
 
 func _process(delta):
-	print(hp)
+	#print(hp)
 	#print(music.noise_level)
 		
 	#print(state_machine.get_current_node())

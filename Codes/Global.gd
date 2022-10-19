@@ -9,6 +9,7 @@ var default = "res://keybinds_default.ini"
 var configfile
 var paused
 var player_dead = false
+onready var fireworm_dir
 onready var player = "res://Codes/Player.gd"
 
 var keybinds = {}
@@ -24,6 +25,7 @@ func _process(delta):
 	#print(scene)
 	#print("Global - ", player_dead)
 	#print(paused)
+	print(fireworm_dir)
 	pass
 
 func _ready():
