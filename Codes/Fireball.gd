@@ -14,6 +14,7 @@ func _physics_process(delta):
 		position.x -= direction * Speed * delta
 
 
+
 #func launch(initial_position: Vector2, dir: Vector2, speed: int) -> void:
 #	position = initial_position
 #	direction = dir
@@ -21,3 +22,17 @@ func _physics_process(delta):
 	
 #func _physics_process(delta:float) -> void:
 #	position += direction * fireball_speed * delta
+
+
+func _on_Fireball_body_entered(body):
+	if body.is_in_group("Fireworm"):
+		pass
+	else:
+		if body.is_in_group("Player"):
+			body.take_damage()
+		elif body.is_in_group("Enemies"):
+			body.deal_damage()
+		$AnimatedSprite.play("Explosion")
+		Speed = 0
+		yield(get_tree().create_timer(0.5), "timeout")
+		queue_free()

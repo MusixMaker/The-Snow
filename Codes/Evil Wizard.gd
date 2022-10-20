@@ -14,6 +14,9 @@ export (int) var hp: int = 5
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var collision = $Hitbox
+onready var hitarea = $HitArea/HitArea
+onready var dams = $Area2D/DamageArea
+onready var cols = $Turnaround/CollisionShape2D
 
 const GRAVITY = 7.75
 const SPEED = 40
@@ -26,12 +29,6 @@ var hit = false
 
 func _ready():
 	pass 
-
-func dead():
-	is_dead = true
-	vel = Vector2(0,0)
-	state_machine.travel("Death")
-	collision.queue_free()
 	
 func _physics_process(delta):
 	#print(hp)
@@ -95,3 +92,14 @@ func _on_Turnaround_body_entered(body):
 		$RayCast2D.position.x *= -1
 		$HitArea/HitArea.position.x *= -1
 		$Area2D/DamageArea.position.x *= -1
+
+func dead():
+	hitarea.queue_free()
+	dams.queue_free()
+	cols.queue_free()
+	is_dead = true
+	vel = Vector2(0,0)
+	state_machine.travel("Death")
+	collision.queue_free()
+	yield(get_tree().create_timer(10), "timeout")
+	queue_free()

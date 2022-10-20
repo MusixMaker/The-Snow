@@ -40,6 +40,7 @@ onready var state
 onready var ap = $AnimationPlayer
 onready var player = get_node("AnimationPlayer")
 onready var dam = 1
+onready var collision = $Hitbox
 export onready var dead = false
 
 #var instance = music.instance()
@@ -121,7 +122,7 @@ func get_input():
 	
 
 func _process(delta):
-	#print(hp)
+	print(hp)
 	#print(music.noise_level)
 		
 	#print(state_machine.get_current_node())
@@ -178,6 +179,7 @@ func take_damage():
 	if hp >= 1:
 		state_machine.travel("Hurt")
 	else:
+		collision.queue_free()
 		dead = true
 		Global.player_dead = true
 		print(dead)

@@ -15,6 +15,7 @@ onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var collision = $Top
 onready var Fireball = preload("res://Scenes/Fireball.tscn")
+onready var detect = $"Detection/Detection shape"
 
 const GRAVITY = 7.75
 const SPEED = 75
@@ -28,12 +29,7 @@ var hit = false
 func _ready():
 	pass 
 
-func dead():
-	is_dead = true
-	vel = Vector2(0,0)
-	state_machine.travel("Death")
-	$Top.queue_free()
-	$Bottom.queue_free()
+
 
 func _physics_process(delta):
 	Global.fireworm_dir = dir
@@ -84,3 +80,13 @@ func _on_Detection_body_entered(body):
 		#get_tree().get_node("res://Scenes/World.tscn").add_child(bullet)
 		get_parent().add_child(bullet)
 		bullet.global_position = self.global_position
+		
+func dead():
+	is_dead = true
+	vel = Vector2(0,0)
+	state_machine.travel("Death")
+	$Top.queue_free()
+	$Bottom.queue_free()
+	detect.queue_free()
+	yield(get_tree().create_timer(10), "timeout")
+	queue_free()
