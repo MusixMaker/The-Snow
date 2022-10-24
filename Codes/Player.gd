@@ -136,27 +136,28 @@ func _process(delta):
 	#	else:
 	#		pass
 
-
-	if dead == false:
+#get key pressed for above function
+	if dead == false: #makes sure the player is alive and able
 		get_input()
 		if vel == Vector2.ZERO and hp > 0 :
-			state_machine.travel("Idle")
+			state_machine.travel("Idle") #When not moving, play idle anmation
 		elif vel.x != 0 and hp > 0:
-			state_machine.travel("Run")
+			state_machine.travel("Run") #When moving play run animation
 	
 		if not is_on_floor():
 			if vel.y < 0:
-				state_machine.travel("Jump")
+				state_machine.travel("Jump") #If going up, play jump animation
 			if vel.y > 0:
-				state_machine.travel("Fall")
+				state_machine.travel("Fall") #If going down, play fall animation
 			
 	#handle_state(state)
 		if vel.x < 0:
 			$AnimatedSprite.flip_h = true
-			$AnimatedSprite/Hitbox/HitArea.position.x = -direction
+			$AnimatedSprite/Hitbox/HitArea.position.x = -direction 
 		if vel.x > 0:
 			$AnimatedSprite.flip_h = false
 			$AnimatedSprite/Hitbox/HitArea.position.x = direction
+		#Both above flip sprited to face the correct direciton of movement
 	
 		vel.y += gravity*delta
 		if vel.y >= 500:
