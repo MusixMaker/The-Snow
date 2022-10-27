@@ -16,3 +16,6 @@ func _ready() -> void:
 func _on_body_entered(body: PhysicsBody2D) -> void:
 	print("sup")
 	body.take_damage(damage)
+
+
+#Honestly think this code is unused, don't believe it's linked to anything, I never see these print funcitons come up 

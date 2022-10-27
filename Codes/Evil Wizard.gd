@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+#State machine, made redundant by animation tree
 enum{
 	ATTACK,
 	DEATH,
@@ -8,9 +9,11 @@ enum{
 	MOVE
 }
 
+#Export Variables
 export var is_dead = false
 export (int) var hp: int = 5
 
+#Varaibles made ready on game start, calls necessary parts from fire wizard for easy coding
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var collision = $Hitbox
@@ -18,18 +21,22 @@ onready var hitarea = $HitArea/HitArea
 onready var dams = $Area2D/DamageArea
 onready var cols = $Turnaround/CollisionShape2D
 
+#Constants
 const GRAVITY = 7.75
 const SPEED = 40
 const FLOOR = Vector2(0,-1)
 
+#Variables
 var vel = Vector2()
 var dir = 1
 var dam = 1
 var hit = false
 
+#Ignore
 func _ready():
 	pass 
-	
+
+
 func _physics_process(delta):
 	#print(hp)
 	if is_dead == false and hit == false:

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+#State machine, made redundant by animation tree
 enum{
 	ATTACK,
 	DEATH,
@@ -8,29 +9,33 @@ enum{
 	MOVE
 }
 
+#Export variables
 export var is_dead = false
 export (int) var hp: int = 5
 
+#Variables amde ready at start of game, gets relevant parts of fireworm and scenes for easy coding
 onready var state_machine = $AnimationTree.get("parameters/playback")
 onready var state
 onready var collision = $Top
 onready var Fireball = preload("res://Scenes/Fireball.tscn")
 onready var detect = $"Detection/Detection shape"
 
+#Constants
 const GRAVITY = 7.75
 const SPEED = 75
 const FLOOR = Vector2(0,-1)
 
+#Variables
 var vel = Vector2()
 var dir = 1
 var dam = 1
 var hit = false
 
+#Ignore
 func _ready():
 	pass 
 
-
-
+#Happens all the time
 func _physics_process(delta):
 	Global.fireworm_dir = dir
 	if is_dead == false and hit == false:
@@ -60,7 +65,7 @@ func _physics_process(delta):
 		
 		$AnimationTree["parameters/conditions/IsDead"] = is_dead
 		
-		
+#Occurs when Fireworm damaged
 func deal_damage():
 	hp -= dam
 	if hp < 1:
@@ -71,7 +76,7 @@ func deal_damage():
 		yield(get_tree().create_timer(0.3), "timeout")
 		hit = false
 
-
+#When a body comes into the view of the fireworms hitbox this occurs
 func _on_Detection_body_entered(body):
 	if body.is_in_group("Player"):
 		print("I see you!")

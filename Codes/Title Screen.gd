@@ -1,8 +1,10 @@
 extends Control
 
+#Variables
 onready var game = "res://Scenes/World.tscn"
 onready var settings = "res://Scenes/Settings.tscn"
 
+#Rotation of title screen synced with music, with some trial and error, closes after too long is taken looking at title screen
 func _ready():
 	$Buttons/Start.grab_focus()
 	yield(get_tree().create_timer(4), "timeout")
@@ -18,13 +20,14 @@ func _ready():
 	yield(get_tree().create_timer(5), "timeout")
 	get_tree().quit()
 
+#Start game
 func _on_Start_pressed():
 	get_tree().change_scene(game)
 
-
+#Go to settings screen
 func _on_Options_pressed():
 	get_tree().change_scene(settings)
 
-
+#Quit button
 func _on_Exit_pressed():
 	get_tree().quit()
