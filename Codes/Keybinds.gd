@@ -49,7 +49,7 @@ func _ready():
 
 #Ignore
 func _process(delta):
-	#print(save_key)
+	print(save_key)
 	pass
 
 #Sorry about the mess, happens when a key is 
@@ -59,6 +59,7 @@ func change_bind(key, value):
 	#For every key in the keybinds page it sets the value and displayed letter based off the pressed key under KiBaatain.gd
 	keybinds[key] = value
 	for k in keybinds.keys():
+		save_key = keybinds[key]
 		print(value)
 		#print("running check on ",k," - ", key," -- ", k == key)
 		

@@ -120,7 +120,7 @@ func get_input():
 	if Input.is_action_pressed("Pause"):
 		get_tree().change_scene(pause)
 	
-
+#Happens all the time, used primarily for debugging
 func _process(delta):
 	print(hp)
 	#print(music.noise_level)
@@ -137,7 +137,9 @@ func _process(delta):
 	#		pass
 
 #get key pressed for above function
-	if dead == false: #makes sure the player is alive and able
+
+	#makes sure the player is alive and able
+	if dead == false: 
 		get_input()
 		if vel == Vector2.ZERO and hp > 0 :
 			state_machine.travel("Idle") #When not moving, play idle anmation
@@ -145,10 +147,13 @@ func _process(delta):
 			state_machine.travel("Run") #When moving play run animation
 	
 		if not is_on_floor():
+			 #If going up, play jump animation
 			if vel.y < 0:
-				state_machine.travel("Jump") #If going up, play jump animation
+				state_machine.travel("Jump")
+				
+			#If going down, play fall animation
 			if vel.y > 0:
-				state_machine.travel("Fall") #If going down, play fall animation
+				state_machine.travel("Fall") 
 			
 	#handle_state(state)
 		if vel.x < 0:
@@ -159,12 +164,14 @@ func _process(delta):
 			$AnimatedSprite/Hitbox/HitArea.position.x = direction
 		#Both above flip sprited to face the correct direciton of movement
 	
+		#Gravity and terminal velocity
 		vel.y += gravity*delta
 		if vel.y >= 500:
 			vel.y = 500
 	#if is_attacking == true:
 	#	vel.x = 0
 		vel = move_and_slide(vel, Vector2.UP)
+	#Attempt at making player fall to ground on death, kinda doesn't work
 	else:
 		vel.y += gravity*delta
 	
@@ -173,19 +180,27 @@ func _process(delta):
 	$AnimationTree["parameters/conditions/Combo"] = combo
 	#$AnimationTree["parameters/conditions/dead"] = dead
 
-
+#When the player gets hit
 func take_damage():
 	#print("ow")
+	
+	#takes damage
 	hp -= dam
+	#If not dead, plays hurt animation
 	if hp >= 1:
 		state_machine.travel("Hurt")
+	#This is the part where he kills you
 	else:
+		#Deletes collision shape
 		collision.queue_free()
+		#Sets dead true all round
 		dead = true
 		Global.player_dead = true
 		print(dead)
+		#Travels to dead state
 		state_machine.travel("Death")
 #		music.died()
+		#After the 4 second audio, despawns and restarts level
 		yield(get_tree().create_timer(4), "timeout")
 		Global.player_dead = false
 		get_tree().change_scene("res://Scenes/World.tscn")
@@ -193,6 +208,7 @@ func take_damage():
 #func deal_damage():
 #	print("stop hitting yourself")
 
+#Deals damage if something enters the live attack box and is an enemy
 func _on_Hitbox_body_entered(body):
 	#print(body.name)
 	if body.is_in_group("Enemies"):
